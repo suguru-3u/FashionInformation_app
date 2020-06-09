@@ -1,22 +1,37 @@
 class Users::PostsController < ApplicationController
-  def index
-  end
-
-  def show
-  end
-
-  def edit
-  end
+    before_action :post_get_id, only:[:edit,:update,:destroy]
 
   def new
     @post = Post.new
   end
 
   def create
+    @post = current_user.posts.new(posts_params)
+    @post.save ? redirect_to(users_posts_path) : render(:new)
+  end
+
+  def index
+    @posts = Post.all
+  end
+
+  def edit
+  end
+
+  def update
+    @post.update(posts_params) ? redirect_to(users_posts_path) : render(:edit)
+  end
+
+  def destroy
+    @post.destroy ? redirect_to(users_posts_path) : render(:index)
   end
 
   private
   def posts_params
     params.require(:post).permit(:title,:post_body,:post_image)
   end
+
+  def post_get_id
+    @post = Post.find(params[:id])
+  end
+
 end
