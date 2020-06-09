@@ -1,0 +1,44 @@
+<h2>ユーザー情報</h2>
+
+<%= form_for(@user,url: users_users_path, method: :PATCH) do |f| %>
+
+<!-- エラーメッセージ表示-->
+<% if @user.errors.any? %>
+	<h3><%= @user.errors.count %>error occurrence</h3><!--エラーメッセ-->
+	<ul>
+		<% @user.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<!-- ユーザー情報表示-->
+<div class="field">
+	<%= f.label :Name %>
+	<%= f.text_field :name %>
+</div>
+
+<div class="field">
+  <%= f.radio_button :sex_status, "neither" %>
+  <%= f.label :sex_status, "どちらでもない" %>
+  <%= f.radio_button :sex_status, "men" %>
+  <%= f.label :sex_status, "男" %>
+  <%= f.radio_button :sex_status, "women" %>
+  <%= f.label :sex_status, "女性" %>
+</div>
+
+<div class="field">
+  <%= f.label :age %><br/>
+  <%= f.number_field :age %>
+</div>
+
+<div class="field">
+  <%= f.label :email %><br />
+  <%= f.email_field :email %>
+</div>
+
+<div class="actions">
+	<%= f.submit "変更する"%>
+</div>
+
+<% end %>
