@@ -4,14 +4,15 @@
   <% @posts.each do |post| %>
   <thead>
     <tr>
-      <th>タイトル</th><th>詳細</th><th>削除</th>
+      <th>タイトル</th><th></th><th></th><th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><%= post.title %></td>
+      <td><%= link_to '見てみる',users_post_path(post) %></td>
       <% if post.user_id == current_user.id %>
-      <td><%= link_to '詳細',edit_users_post_path(post) %></td>
+      <td><%= link_to '編集',edit_users_post_path(post) %></td>
       <td><%= link_to '削除',users_post_path(post),method: :delete %></td>
       <% end %>
     </tr>

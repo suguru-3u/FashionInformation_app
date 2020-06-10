@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
 
     # アソシエーション
+    has_many :comments
   	belongs_to :user
     attachment :post_image
 

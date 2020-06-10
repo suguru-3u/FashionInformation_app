@@ -26,7 +26,9 @@ Rails.application.routes.draw do
     get 'homes/top' => 'homes#top',as: '/'
     get 'homes/about' => 'homes#about'
     resource :users, only:[:show,:edit,:update]
-    resources :posts, only:[:new,:index,:edit,:create,:destroy,:update]
+    resources :posts do
+      resources :comments, only: [:create,:destroy]
+    end
   end
 
 
