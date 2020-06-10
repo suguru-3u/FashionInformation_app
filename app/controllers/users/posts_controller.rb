@@ -1,5 +1,5 @@
 class Users::PostsController < ApplicationController
-    before_action :post_get_id, only:[:edit,:update,:destroy]
+    before_action :post_get_id, only:[:show,:edit,:update,:destroy]
 
   def new
     @post = Post.new
@@ -12,6 +12,11 @@ class Users::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+  end
+
+  def show
+    @comments = @post.comments
+    @comment = @post.comments.build
   end
 
   def edit
