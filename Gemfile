@@ -67,3 +67,9 @@ gem 'devise'
 # 画像
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+
+# グーグルAPI
+gem 'omniauth-google-oauth2'
+
+# 環境変数
+gem 'dotenv-rails'
