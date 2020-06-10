@@ -3,7 +3,7 @@
 
 <!-- エラーメッセージ表示-->
 <% if @post.errors.any? %>
-	<h3><%= @post.errors.count %>error occurrence</h3><!--エラーメッセ-->
+	<h3><%= @post.errors.count %>件のエラーが発生</h3>
 	<ul>
 		<% @post.errors.full_messages.each do |message| %>
 		<li><%= message %></li>

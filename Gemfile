@@ -77,3 +77,6 @@ gem 'dotenv-rails'
 
 # Youtube API
 gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
+
+# エラー文の日本語化
+gem 'rails-i18n'
