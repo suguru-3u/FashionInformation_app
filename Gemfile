@@ -74,3 +74,6 @@ gem 'omniauth-google-oauth2'
 
 # 環境変数
 gem 'dotenv-rails'
+
+# Youtube API
+gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
