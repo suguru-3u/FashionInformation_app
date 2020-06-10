@@ -31,8 +31,7 @@ Rails.application.routes.draw do
     resource :users, only:[:show,:edit,:update]
     resources :posts do
       resources :comments, only: [:create,:destroy]
-      post 'add' => 'favorites#create'
-      delete '/add' => 'favorites#destroy'
+      resource :favorites, only: [:create, :destroy]
     end
   end
 

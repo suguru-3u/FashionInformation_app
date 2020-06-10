@@ -12,7 +12,7 @@ class Post < ApplicationRecord
 
     # お気に入りしているのかチェックメゾット
     def favorites_user(user_id, post_id)
-		    Favorite.where(user_id: user_id, book_id: post_id).exists?
+		    Favorite.where(user_id: user_id, post_id: post_id).exists?
     end
 
 end

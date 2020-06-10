@@ -1,6 +1,6 @@
 class Favorite < ApplicationRecord
 
-  アソシエーション
+  # アソシエーション
   belongs_to :user
   belongs_to :post
   validates :user_id, {presence: true}

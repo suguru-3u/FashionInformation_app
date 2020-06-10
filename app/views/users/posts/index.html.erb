@@ -12,10 +12,10 @@
       <td><%= post.title %></td>
       <td><%= link_to '見てみる',users_post_path(post) %></td>
       <td>
-        <% if !Favorite.exists?(user_id:current_user.id,post_id:post.id) %>
-          <%= link_to "お気に入り",post_add_path(post),method: :post %>
+        <% if post.favorites_user(current_user.id, post.id) %>
+          <%= link_to 'お気に入り解除',users_post_favorites_path(post),method: :delete %><%= post.favorites.count %>
         <% else %>
-          <%= link_to "お気に入り解除",post_add_path(post),method: :delete %>
+          <%= link_to 'お気に入り',users_post_favorites_path(post),method: :post %><%= post.favorites.count %>
         <% end %>
       </td>
       <% if post.user_id == current_user.id %>
