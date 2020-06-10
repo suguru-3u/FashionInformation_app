@@ -69,6 +69,7 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 # グーグルAPI
+gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
 # 環境変数

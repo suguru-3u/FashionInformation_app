@@ -8,26 +8,31 @@ Rails.application.routes.draw do
   end
   root to: 'users/homes#top'
 # デバイスのURL
-  devise_for :users, skip: :all
+  devise_for :users, controllers: {
+      omniauth_callbacks: "users/omniauth_callbacks"
+  }
+
   devise_scope :user do
-    get '/users/sign_in' => 'users/sessions#new', as: 'new_user_session'
-    post '/users/sign_in' => 'users/sessions#create', as: 'user_session'
-    delete '/users/sign_out' => 'users/sessions#destroy', as: 'destroy_user_session'
-    get '/users/sign_up' => 'users/registrations#new', as: 'new_user_registration'
-    get '/users/passwords/edit' => 'users/registrations#edit', as: 'password_edit_registrations'
+    get '/users/sign_in' => 'users/sessions#new'
+    post '/users/sign_in' => 'users/sessions#create'
+    delete '/users/sign_out' => 'users/sessions#destroy'
+    get '/users/sign_up' => 'users/registrations#new'
+    get '/users/passwords/edit' => 'users/registrations#edit'
     patch '/users/passwords/update' => 'users/registrations#update'
-    post '/users/sign_up' => 'users/registrations#create', as: 'user_registration'
-    get '/users/' => 'users/passwords#edit', as: 'edit_user_password'
-    patch '/users/passwords' => 'users/passwords#update', as: 'user_password'
-    get '/users/passwords/new' => 'users/passwords#new',as: 'user_forgot_password'
+    post '/users/sign_up' => 'users/registrations#create'
+    get '/users/' => 'users/passwords#edit'
+    patch '/users/passwords' => 'users/passwords#update'
+    get '/users/passwords/new' => 'users/passwords#new'
   end
 # ユーザー側のURL
   namespace :users do
-    get 'homes/top' => 'homes#top',as: '/'
+    get 'homes/top' => 'homes#top'
     get 'homes/about' => 'homes#about'
     resource :users, only:[:show,:edit,:update]
     resources :posts do
       resources :comments, only: [:create,:destroy]
+      post 'add' => 'favorites#create'
+      delete '/add' => 'favorites#destroy'
     end
   end
 
