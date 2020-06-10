@@ -27,6 +27,9 @@
         <%= link_to "ユーザー情報", edit_users_users_path,class: "btn btn-nav text-light mr-3"%>
       </li>
       <li>
+        <%= link_to "お問い合わせ", new_users_contact_path,class: "btn btn-nav text-light"%>
+      </li>
+      <li>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: "btn btn-nav text-light"%>
       </li>
     </ul>

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get 'homes/top' => 'homes#top'
     get 'homes/about' => 'homes#about'
     resource :users, only:[:show,:edit,:update]
+    resources :contacts, only: [:new,:create]
     resources :posts do
       resources :comments, only: [:create,:destroy]
       resource :favorites, only: [:create, :destroy]
