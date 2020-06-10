@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     get 'homes/about' => 'homes#about'
     resource :users, only:[:show,:edit,:update]
     resources :contacts, only: [:new,:create]
+    resources :youtube, only: [:index,:create,:destroy]
+    get '/users/youtube' => '/users/youtube#favorite'
     resources :posts do
       resources :comments, only: [:create,:destroy]
       resource :favorites, only: [:create, :destroy]
