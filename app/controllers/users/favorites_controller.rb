@@ -1,23 +1,15 @@
 class Users::FavoritesController < ApplicationController
 
   def create
-    user = current_user
-    post = Post.find(params[:post_id])
-    if Favorite.create(user_id: user.id,post_id:post.id)
-      redirect_to post
-    else
-      redirect_to root_url
-    end
-
+    @post = current_user.favorites.new(post_id: params[:post_id])
+    @post.save ? redirect_back(fallback_location: root_path) : redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    user = current_user
-    post = Post.find(params[:post_id])
-    if favorite = Favorite.find_by(user_id: user.id,post_id:post.id)
-      favorite.delete
-      redirect_to users_path(current_user)
-    else
-      redirect_to root_url
+    if @favorite = Favorite.find_by(post_id: params[:post_id], user_id: current_user.id)
+      @favorite.destroy
     end
+    redirect_back(fallback_location: root_path)
+  end
+
 end
