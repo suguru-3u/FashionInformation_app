@@ -1,5 +1,11 @@
 <h2>質問一覧</h2>
 
+<p>検索</p>
+<%= form_tag(users_users_posts_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索' %>
+<% end %>
+
 <table>
   <% @posts.each do |post| %>
   <thead>

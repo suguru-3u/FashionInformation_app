@@ -15,4 +15,10 @@ class Post < ApplicationRecord
 		    Favorite.where(user_id: user_id, post_id: post_id).exists?
     end
 
+    # 検索メゾット
+    def self.search(search)
+      return Post.all unless search
+      Post.where(['title LIKE ?', "%#{search}%"])
+    end
+
 end

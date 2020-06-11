@@ -30,6 +30,10 @@ class Users::PostsController < ApplicationController
     @post.destroy ? redirect_to(users_posts_path) : render(:index)
   end
 
+  def search
+    @posts = Post.search(params[:search])
+  end
+
   private
   def posts_params
     params.require(:post).permit(:title,:post_body,:post_image)
