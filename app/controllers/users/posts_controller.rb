@@ -31,7 +31,22 @@ class Users::PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:search])
+    
+   if params[:name]
+     if params[:name].empty?
+     @posts = Post.none
+     else
+     @posts = Post.where('title LIKE(?)', "%#{params[:name]}%")
+     end
+   else
+     @posts = Post.all
+   end
+
+   respond_to do |format|
+    format.html
+    format.json
+   end
+
   end
 
   private
