@@ -1,10 +1,19 @@
 <h2>質問一覧</h2>
 
-<p>検索</p>
-<%= form_tag(users_users_posts_path,:method => 'get') do %>
-  <%= text_field_tag :search %>
-  <%= submit_tag '検索' %>
-<% end %>
+<!-- 検索フォーム -->
+<div class="container">
+  <div class='text-center'>
+    <%= form_with(url: users_users_posts_path, local: true, method: :get, class: "search-form") do |f| %>
+    <%= f.text_field :name, placeholder: "検索", class: "search-inputa",id: 'search-input', autocomplete:'off' %>
+    <div class="result">
+      <ul>
+        <!-- この中にインクリメンタルサーチの結果が表示される -->
+      </ul>
+    </div>
+    <%= f.submit :search %>
+    <% end %>
+  </div>
+</div>
 
 <table>
   <% @posts.each do |post| %>
