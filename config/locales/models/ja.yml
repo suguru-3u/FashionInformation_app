@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      post:
+        title: タイトル
+        post_body: 本文
+      contact:
+        title: タイトル
+        contact_body: お問い合わせ内容
+      comment:
+        content: コメント
