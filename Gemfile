@@ -86,3 +86,6 @@ gem 'bootstrap', '~> 4.1.1'
 
 # Jqouery
 gem 'jquery-rails'
+
+# bootstrapアイコン
+gem "font-awesome-rails"

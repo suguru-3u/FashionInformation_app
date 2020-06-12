@@ -1,2 +1,49 @@
-<h1>Users::Users#show</h1>
-<p>Find me in app/views/users/users/show.html.erb</p>
+<div class="container">
+  <h2 class = "mb-3 mt-3 text-center">マイページ</h2>
+  <div class="row mb-5">
+    <div class="col-4">
+      <div class = "border p-5">
+        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">洋服の質問をする</h3>
+        <p>ここではファッションに関するお悩みや疑問の質問を行うことができます。</p>
+        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary ' %>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class = "border p-5">
+        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">Youtube動画検索</h3>
+        <p>ファッション系Youtuberから情報を<br>GETしちゃおう!</p>
+        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary' %>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class = "border p-5">
+        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">Instagram画像検索</h3>
+        <p>Instagramから流行りのコーデを取得しちゃおう!</p>
+        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary' %>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-4">
+      <div class = "border p-5">
+        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">洋服の情報の投稿</h3>
+        <p>ここではファッションに関する情報を発信することができます！。</p>
+        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary' %>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class = "border p-5">
+        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">お知らせ</h3>
+        <p>運営からお知らせが届くことがあります.........たまにはチェックしてね</p>
+        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary' %>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class = "border p-5">
+        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">お問い合わせ</h3>
+        <p>運営にご意見がありましたらこちらまで</p>
+        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>

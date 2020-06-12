@@ -1,2 +1,87 @@
-<h1>Users::Homes#about</h1>
-<p>Find me in app/views/users/homes/about.html.erb</p>
+<div class="jumbotron">
+ <div class="container top pt-5">
+   <div class="top-message">
+     <h1>ようこそFashionInformation_appへ</h1>
+     <p class="h3">さあ、毎日のファッションコーデを楽しくしていきましょう!</p>
+     <div class="mt-4">
+       <%= link_to '新規会員登録', new_user_registration_path,class: 'btn btn-success mr-3' %>
+       <%= link_to 'ログイン', new_user_session_path,class: 'btn btn-primary' %>
+     </div>
+   </div>
+ </div>
+</div>
+<div class="pt-3 pb-5 introduce top-p">
+<h2 class="text-center mb-2 ">FashionInformation_appについて</h2>
+  <h3 class=" text-center mt-2 mb-3">サービス内容</h3>
+  <p class=" p-5 border border-secondary h5">
+    みなさん、以下のようなご経験はございませんか？<br><br>
+    ・洋服のコーディネートで悩んだことがあった。<br>
+    ・洋服がほしいけど何を買えばいいのかがわからないことがあった。<br><br>
+    もしこのようなご経験がある方はこのアプリで解消することができます。<br>
+    このFashionInformation_appはファッションお悩み解消アプリです。<br>
+    FashionInformation_appではファッションのお悩みの投稿しユーザー同士で解消する他<br>
+    検索バーからInstagram,Youtubeのファッション情報を取得しお悩みの解決を手助けしてくれます。<br>
+    さあ、Task_appでTaskを管理して仕事の効率化、ミスをなくしていきましょう！
+  </p>
+</div>
+<div class='top-Task pb-5'>
+  <h2 class="text-center pt-5 pb-5">FashionInformation_appでできること</h2>
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col-6 h4 mt-5">
+        <ul>
+          <li class = 'mb-3'>
+            お悩みをアプリ内で投稿することができる
+          </li>
+          <li class = 'mb-3'>
+            Instagramnの画像を取得しコーディネートの参考にできる
+          </li>
+          <li class = 'mb-3'>
+            Youtubeの動画を取得し、ファッション情報を取得できる
+          </li>
+          <li class = 'mb-3'>
+            ファッション情報を保存しいつでも見ることができる
+          </li>
+        </ul>
+      </div>
+      <div class="col-6 ">
+          <%= image_tag 'bruce-mars-AndE50aaHn4-unsplash.jpg',class: "about-image w-100 rounded " %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid top-Task pb-5">
+  <h2 class="text-center mb-5">FashionInformation_appのご利用に向いている方</h2>
+  <div class="row">
+    <div class="col-6">
+      <%= image_tag 'umit-bulut-qbTC7ZwJB64-unsplash.jpg',class: "about-image w-100 rounded" %>
+    </div>
+    <div class="col-xs-6 h4 mt-5">
+      <ul>
+        <li class = 'mb-3'>
+          毎日のコーディネートで悩んでいる方
+        </li>
+        <li class = 'mb-3'>
+          ファッション情報が欲しい方
+        </li>
+        <li class = 'mb-3'>
+          洋服が欲しいが、何を買えばいいのかわからない方
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div>
+<div class="container top-m-message text-center mb-5 pb-5">
+  <h2 class=" mt-5 mb-5">さあ、FashionInformation_appを利用してみよう!</h2>
+  <div class="row ">
+    <div class="col-6">
+      <p class='h4'>初めて利用する方はこちらから</p>
+        <%= link_to '新規会員登録', new_user_registration_path,class: 'btn btn-success mr-3' %>
+    </div>
+    <div class="col-6">
+      <p class='h4'>利用したことがある方はこちらから</p>
+        <%= link_to 'ログイン', new_user_session_path,class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
