@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     get 'posts/edit'
     get 'posts/new'
   end
+
   root to: 'users/homes#top'
+  get 'homes/about' => 'homes#about'
+  
 # デバイスのURL
   devise_for :users, controllers: {
       omniauth_callbacks: "users/omniauth_callbacks"

@@ -1,2 +1,49 @@
-<h1>Users::Homes#top</h1>
-<p>Find me in app/views/users/homes/top.html.erb</p>
+<div id="carouselOption1" class="carousel slide" data-ride="carousel">
+  <!-- インジケータの設定 -->
+  <ol class="carousel-indicators">
+    <li data-target="#carouselOption1" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselOption1" data-slide-to="1"></li>
+    <li data-target="#carouselOption1" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag 'hannah-morgan-ycVFts5Ma4s-unsplash.jpg',class: "top-image d-block w-100 " %>
+      <div class="carousel-caption d-none d-md-block">
+        <%# <h5>第1スライド見出し</h5>
+        <p>スライドイメージの紹介</p> %>
+      </div>
+    </div>
+    <div class="carousel-item ">
+      <%= image_tag 'burgess-milner-OYYE4g-I5ZQ-unsplash.jpg',class:"top-image d-block w-100" %>
+      <div class="carousel-caption d-none d-md-block">
+        <%# <h5>第2スライド見出し</h5>
+        <p>スライドイメージの紹介</p> %>
+      </div>
+    </div>
+    <div class="carousel-item ">
+      <%= image_tag 'victor-garcia-3YW2jxSblE8-unsplash.jpg',class: "top-image d-block w-100" %>
+      <div class="carousel-caption d-none d-md-block">
+        <%# <h5>第3スライド見出し</h5>
+        <p>スライドイメージの紹介</p> %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = 'container mb-5'>
+  <h2 class='text-center mt-5 mb-5 top-message'>~ご案内~</h2>
+  <div class="row text-center">
+    <div class="col-4">
+      <h5 class="mb-3">このアプリを初めて利用される方</h5>
+      <%= link_to '新規会員登録', new_user_registration_path,class: 'btn btn-primary' %>
+    </div>
+    <div class="col-4">
+      <h5 class="mb-3">既に会員登録済の方</h5>
+      <%= link_to 'ログイン', new_user_session_path,class: 'btn btn-success' %>
+    </div>
+    <div class="col-4">
+      <h5 class="mb-3">アプリのことをよく知りたい方</h5>
+      <%= link_to 'アプリ詳細', users_homes_about_path,class: 'btn btn-info' %>
+    </div>
+  </div>
+</div>

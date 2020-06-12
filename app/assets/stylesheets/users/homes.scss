@@ -1,3 +1,64 @@
 // Place all the styles related to the users::homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// TOPページ
+.top-image{
+  height: 500px;
+}
+.carousel-item h5{
+  margin-bottom: 300px;
+}
+
+
+// Abouページ
+span{
+  color: white;
+}
+
+
+.jumbotron {
+  background: image-url('toa-heftiba-KQ1n6HzSahY-unsplash.jpg')
+  center no-repeat;
+  background-size: cover;
+  height: 500px;
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.jumbotron::before{
+ content: ' ';
+ background-color: rgba(0,0,0,.6);
+ position: absolute;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ left: 0;
+}
+.top{
+ position: absolute;
+ color: white;
+}
+// .introduce{
+//   background-color: #f5f5f5;
+// }
+.top-message{
+  width: 850px;
+  margin-left: 200px;
+  margin: 0 auto;
+}
+.top-p{
+  width: 950px;
+  margin: 0 auto;
+}
+.top-Task{
+  background-color: #f5f5f5;
+}
+.top-m-message{
+  width: 400px;
+  margin: 0 auto;
+}
+.about-image{
+  height: 300px;
+  width: 300px;
+}
