@@ -1,2 +1,44 @@
-<h1>Users::Posts#index</h1>
-<p>Find me in app/views/users/posts/index.html.erb</p>
+<div class="container">
+  <h2 class = 'text-center mt-3 mb-3'>質問一覧</h2>
+
+  <!-- 検索フォーム -->
+  <div class='text-center mb-5'>
+    <div class="row justify-content-center">
+      <div>
+        <%= form_with(url: users_users_posts_path, local: true, method: :get, class: "search-form") do |f| %>
+        <%= f.text_field :name, placeholder: "検索", class: "search-inputa ",id: 'search-input', autocomplete:'off' %>
+      </div>
+      <div>
+        <%= f.submit :search,class: 'btn btn-info ml-3' %>
+      </div>
+      <% end %>
+    </div>
+    <div class="result">
+      <ul>
+        <!-- この中にインクリメンタルサーチの結果が表示される -->
+      </ul>
+    </div>
+  </div>
+
+  <% @posts.each do |post| %>
+  <div class="row">
+    <div class="col-4 mb-5">
+      <div class="border pb-3">
+        <%= attachment_image_tag(post,:post_image, :fill, 300, 371, fallback: "no_image.jpg") %><br>
+        <%= post.title %><br>
+        <%= link_to '見る',users_post_path(post)%><br>
+        <% if post.favorites_user(current_user.id, post.id) %>
+          <%= link_to 'お気に入り解除',users_post_favorites_path(post),method: :delete %><%= post.favorites.count %>
+        <% else %>
+          <%= link_to 'お気に入り',users_post_favorites_path(post),method: :post %><%= post.favorites.count %>
+        <% end %>
+        <% if post.user_id == current_user.id %>
+         <%= link_to '編集',edit_users_post_path(post) %>
+         <%= link_to '削除',users_post_path(post),method: :delete %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+</div>

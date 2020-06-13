@@ -63,3 +63,34 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # ログイン認証
 gem 'devise'
+
+# 画像
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+
+# グーグルAPI
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
+# 環境変数
+gem 'dotenv-rails'
+
+# Youtube API
+gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
+
+# エラー文の日本語化
+gem 'rails-i18n'
+
+# bootsnap
+gem 'bootstrap', '~> 4.1.1'
+
+# Jqouery
+gem 'jquery-rails'
+
+# bootstrapアイコン
+gem "font-awesome-rails"
+
+# 本番環境のdb
+group :production do
+  gem 'mysql2'
+end

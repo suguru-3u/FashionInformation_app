@@ -1,2 +1,22 @@
-<h1>Users::Posts#show</h1>
-<p>Find me in app/views/users/posts/show.html.erb</p>
+<h2>コメント一覧</h2>
+
+<div class="comment-wrapper border-top mb-10">
+  <p class="mt-5">コメント一覧</p>
+
+  <% @comments.each do |f| %>
+    <div>
+      <%= f.content %>
+      <br/>
+      <% if f.user_id == current_user.id %>
+        <%= link_to '削除',users_post_comment_path(@post),method: :delete %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_for([@post, @comment] ,url:users_post_comments_path(@post),method: :post) do |f| %>
+      <%= f.text_area :content, class: "form-control", rows: 5 %>
+      <%= f.submit "投稿", class: "btn btn-primary mt-5" %>
+    <% end %>
+  <% end %>
+</div>
