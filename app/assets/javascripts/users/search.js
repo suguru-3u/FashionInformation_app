@@ -46,6 +46,6 @@ $(document).on('turbolinks:load', function(){
     // データを受け取れなかった際の処理
     .fail(function(data){
       alert('非同期通信に失敗しました');
-    })
+    })git clone https://github.com/suguru-3u/FashionInformation_app.git
   }
 });
