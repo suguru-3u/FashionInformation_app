@@ -1,17 +1,17 @@
 $(document).on('turbolinks:load', function(){
-  const inputForm = $('#search-input');
-  const searchResult = $('.result ul');
+  var inputForm = $('#search-input');
+  var searchResult = $('.result ul');
 
 // データがあった場合に呼ばれる関数
   function builtHTML(data){
-    let html = `
+    var html = `
     <li>${data.title}</li>
     `
     searchResult.append(html);
   }
 // 該当するデータがなかった時に呼ばれる関数
   function NoResult(message){
-    let html = `
+    var html = `
     <li>${message}</li>
     `
     searchResult.append(html);
@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function(){
 
   // フォームに入力すると発火する
   inputForm.on('keyup', function(){
-    const target = $(this).val();
+    var target = $(this).val();
     search(target);
     console.log(target)
   });
