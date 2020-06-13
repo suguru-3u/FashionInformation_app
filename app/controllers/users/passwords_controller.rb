@@ -19,7 +19,7 @@ class Users::PasswordsController < Devise::PasswordsController
   def create_params
     params.require(:user).permit(:email)
   end
-end
+
 
   # GET /resource/password/new
   # def new
