@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   root to: 'users/homes#top'
   get 'homes/about' => 'homes#about'
-  
+
 # デバイスのURL
   devise_for :users, controllers: {
       omniauth_callbacks: "users/omniauth_callbacks"
@@ -27,8 +27,10 @@ Rails.application.routes.draw do
     patch '/users/passwords' => 'users/passwords#update'
     get '/users/passwords/new' => 'users/passwords#new'
   end
+
 # ユーザー側のURL
   namespace :users do
+    resource :passwords, only: [:create,:update]
     get 'homes/top' => 'homes#top'
     get 'homes/about' => 'homes#about'
     resource :users, only:[:show,:edit,:update]

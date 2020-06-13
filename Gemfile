@@ -89,3 +89,8 @@ gem 'jquery-rails'
 
 # bootstrapアイコン
 gem "font-awesome-rails"
+
+# 本番環境のdb
+group :production do
+  gem 'mysql2'
+end
