@@ -20,25 +20,70 @@
     </div>
   </div>
 
-  <% @posts.each do |post| %>
+
+  <h2 class = "mb-3 mt-3 ">質問投稿</h2>
   <div class="row">
-    <div class="col-4 mb-5">
-      <div class="border pb-3">
-        <%= attachment_image_tag(post,:post_image, :fill, 300, 371, fallback: "no_image.jpg") %><br>
-        <%= post.title %><br>
-        <%= link_to '見る',users_post_path(post)%><br>
-        <% if post.favorites_user(current_user.id, post.id) %>
-          <%= link_to 'お気に入り解除',users_post_favorites_path(post),method: :delete %><%= post.favorites.count %>
-        <% else %>
-          <%= link_to 'お気に入り',users_post_favorites_path(post),method: :post %><%= post.favorites.count %>
+    <div class="col-3">
+      <%= form_for(@post,url: users_posts_path, method: :post) do |f| %>
+
+      <!-- エラーメッセージ表示-->
+      <% if @post.errors.any? %>
+      <h3><%= @post.errors.count %>件のエラーが発生</h3>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
         <% end %>
-        <% if post.user_id == current_user.id %>
-         <%= link_to '編集',edit_users_post_path(post) %>
-         <%= link_to '削除',users_post_path(post),method: :delete %>
+      </ul>
+      <% end %>
+
+      <!-- ユーザー情報表示-->
+        <div >
+          <%= f.label :'タイトル' %><br>
+          <%= f.text_field :title,class:'form-control' %>
+        </div>
+
+        <div class="mt-4">
+          <%= f.label :'画像' %><br/>
+          <%= f.attachment_field :post_image %>
+        </div>
+
+        <div class="mt-4 ">
+          <%= f.label :'本文' %><br/>
+          <%= f.text_area :post_body,class:'form-control' %>
+        </div>
+
+      <div class="mt-4">
+        <%= f.submit "投稿する",class: 'btn btn-info'%>
+      </div>
+
+      <% end %>
+    </div>
+
+    <div class="col-9">
+      <div class="row">
+       <% @posts.each do |post| %>
+        <div class="col-4 mb-5">
+          <div class="card">
+           <%= attachment_image_tag(post,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+             <div class="card-body">
+              <%= post.title %>
+              <p class = 'class='card-text''>
+                <%= link_to '見る',users_post_path(post)%><br>
+                <% if post.favorites_user(current_user.id, post.id) %>
+                 <%= link_to 'お気に入り解除',users_post_favorites_path(post),method: :delete %><%= post.favorites.count %>
+                <% else %>
+                 <%= link_to 'お気に入り',users_post_favorites_path(post),method: :post %><%= post.favorites.count %>
+                <% end %>
+                <% if post.user_id == current_user.id %>
+                 <%= link_to '編集',edit_users_post_path(post) %>
+                 <%= link_to '削除',users_post_path(post),method: :delete %>
+                <% end %>
+              </p>
+             </div>
+          </div>
+        </div>
         <% end %>
       </div>
     </div>
   </div>
-  <% end %>
-
 </div>

@@ -2,26 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.my-page-top{
-  color: rgb(19, 91, 146);
+.my-page{
+  background: image-url('vadim-sherbakov-tCICLJ5ktBE-unsplash.jpg')
+  center no-repeat;
+  background-size: cover;
+  height: 760px;
+
+  .my-page-top{
+    color: #EEEEEE;
+  }
+}
+.my-page-box{
+  border: 1px solid #D3D3D3;
 }
 
-// .my-page-youtube-top{
-//   color: rgb(255, 127, 80);
-// }
-//
-// .my-page-instagram-top{
-//   color: rgb(102,205,170);
-// }
-//
-// .my-page-infomation-top{
-//   color:rgb(210, 180, 140);
-// }
-//
-// .my-page-notice-top{
-//   color: rgb(60, 179, 113);
-// }
-//
-// .my-page-contact-top{
-//   color: rgb(221,160,221);
-// }
+.my-page-content{
+  color: #D3D3D3;
+  .my-page-link{
+  color: #D3D3D3;
+  }
+}

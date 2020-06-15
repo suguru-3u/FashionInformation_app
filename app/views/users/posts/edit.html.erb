@@ -1,35 +1,39 @@
-<h2>質問詳細</h2>
+<div class="container">
+  <h2>メモ詳細</h2>
+  <%= form_for(@post,url:users_note_path , method: :PATCH) do |f| %>
 
-<%= form_for(@post,url: users_posts_path, method: :post) do |f| %>
+  <!-- エラーメッセージ表示-->
+  <% if @post.errors.any? %>
+  <h3><%= @post.errors.count %>件のエラーが発生</h3>
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
 
-<!-- エラーメッセージ表示-->
-<% if @post.errors.any? %>
-	<h3><%= @post.errors.count %>error occurrence</h3><!--エラーメッセ-->
-	<ul>
-		<% @post.errors.full_messages.each do |message| %>
-		<li><%= message %></li>
-		<% end %>
-	</ul>
-<% end %>
+  <!-- ユーザー情報表示-->
+  <div class="row">
+    <div class="col">
+      <%= f.label :'タイトル' %><br>
+      <%= f.text_field :title,class:'form-control' %>
+    </div>
 
-<!-- ユーザー情報表示-->
-<div class="field">
-	<%= f.label :'タイトル' %>
-	<%= f.text_field :title %>
+    <div class="col">
+      <%= f.label :'本文' %><br/>
+      <%= f.text_area :post_body,class:'form-control' %>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <%= f.label :'画像' %><br/>
+    <%= f.attachment_field :post_image %>
+  </div>
+
+  <div class="mt-4">
+    <%= f.submit "保存",class: 'btn btn-info mr-3'%>
+    <%= link_to '戻る',users_posts_path,class: 'btn btn-info' %>
+  </div>
+
+  <% end %>
 </div>
-
-<div class="field">
-  <%= f.label :'画像' %><br/>
-  <%= f.attachment_field :post_image %>
-</div>
-
-<div class="field">
-  <%= f.label :'本文' %><br/>
-  <%= f.text_area :post_body %>
-</div>
-
-<div class="actions">
-	<%= f.submit "変更する"%>
-</div>
-
-<% end %>

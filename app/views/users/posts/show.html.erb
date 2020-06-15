@@ -1,22 +1,44 @@
-<h2>コメント一覧</h2>
-
-<div class="comment-wrapper border-top mb-10">
-  <p class="mt-5">コメント一覧</p>
-
-  <% @comments.each do |f| %>
-    <div>
-      <%= f.content %>
-      <br/>
-      <% if f.user_id == current_user.id %>
-        <%= link_to '削除',users_post_comment_path(@post),method: :delete %>
-      <% end %>
+<div class="container">
+  <h2 class = 'text-center mt-3 mb-3'>コメント一覧</h2>
+  <div class="row">
+    <div class="col-3">
+      <h3>質問内容</h3>
+      <p>
+        タイトル<br>
+        <%= @post.title %>
+      </p>
+      <p>
+        本文<br>
+        <%= @post.post_body %>
+      </p>
+      <%= attachment_image_tag(@post,:post_image, fallback: "no_image.jpg") %>
     </div>
-  <% end %>
+    <div class="col-9">
+      <div class="row">
+        <div class="col-12">
+            <table class="table">
+              <tbody>
+                <% @comments.each do |f| %>
+                <tr>
+                  <th>
+                    <%= f.content %>
+                  </th>
+                  <th>
+                    <% if f.user_id == current_user.id %>
+                      <%= link_to '削除',users_post_comment_path(@post),method: :delete %>
+                    <% end %>
+                  </th>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
 
-  <% if user_signed_in? %>
-    <%= form_for([@post, @comment] ,url:users_post_comments_path(@post),method: :post) do |f| %>
-      <%= f.text_area :content, class: "form-control", rows: 5 %>
-      <%= f.submit "投稿", class: "btn btn-primary mt-5" %>
-    <% end %>
-  <% end %>
+            <%= form_for([@post, @comment] ,url:users_post_comments_path(@post),method: :post) do |f| %>
+                <%= f.text_area :content, class: "form-control", rows: 5 %>
+                <%= f.submit "投稿", class: "btn btn-primary mt-5" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
