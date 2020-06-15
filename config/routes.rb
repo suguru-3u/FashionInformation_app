@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :users do
+    get 'notices/index'
+    get 'notices/show'
+  end
+  namespace :users do
     get 'notes/index'
   end
   get 'notes/index'
@@ -41,6 +45,7 @@ Rails.application.routes.draw do
     resources :contacts, only: [:new,:create]
     resources :youtube, only: [:index,:create,:destroy]
     resources :notes, only: [:index,:edit,:create,:destroy,:update]
+    resources :notices, only: [:index,:show]
     get '/users/youtube' => '/users/youtube#favorite'
     resources :posts do
       resources :comments, only: [:create,:destroy]
