@@ -1,18 +1,17 @@
 class Users::PostsController < ApplicationController
     before_action :post_get_id, only:[:show,:edit,:update,:destroy]
 
-  def new
+  def index
     @post = Post.new
+    @posts = Post.all
   end
 
   def create
+    @posts = Post.all
     @post = current_user.posts.new(posts_params)
-    @post.save ? redirect_to(users_posts_path) : render(:new)
+    @post.save ? redirect_to(users_posts_path) : render(:index)
   end
 
-  def index
-    @posts = Post.all
-  end
 
   def show
     @comments = @post.comments
@@ -31,7 +30,7 @@ class Users::PostsController < ApplicationController
   end
 
   def search
-    
+
    if params[:name]
      if params[:name].empty?
      @posts = Post.none

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :users do
+    get 'notes/index'
+  end
+  get 'notes/index'
+  namespace :users do
     get 'posts/index'
     get 'posts/show'
     get 'posts/edit'
@@ -36,6 +40,7 @@ Rails.application.routes.draw do
     resource :users, only:[:show,:edit,:update]
     resources :contacts, only: [:new,:create]
     resources :youtube, only: [:index,:create,:destroy]
+    resources :notes, only: [:index,:edit,:create,:destroy,:update]
     get '/users/youtube' => '/users/youtube#favorite'
     resources :posts do
       resources :comments, only: [:create,:destroy]
@@ -51,7 +56,7 @@ Rails.application.routes.draw do
     post 'admins/sign_in' => 'admins/sessions#create', as: 'admin_session'
 
     authenticated :admin do
-      delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
+      delete '/admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
       get 'admins/password/edit' => 'admins/passwords#edit', as: 'edit_admin_password'
       patch 'admins/password' => 'admins/passwords#update', as: 'admin_password'
       get 'admins/passwords/new' => 'admins/password#new', as: 'admin_forgot_password'
@@ -60,6 +65,9 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resource :admins, only:[:show,:edit]
+    resources :users, only:[:index,:edit,:destroy,:update]
+    resources :posts, only:[:index,:edit,:destroy,:update]
+    resources :contacts, only:[:index,:show,:destroy,:update]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

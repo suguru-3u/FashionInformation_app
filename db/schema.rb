@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_120633) do
+ActiveRecord::Schema.define(version: 2020_06_15_094542) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -53,6 +53,21 @@ ActiveRecord::Schema.define(version: 2020_06_10_120633) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "genrne_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "note_title"
+    t.text "note_body"
+    t.string "post_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "post_body"
@@ -82,6 +97,7 @@ ActiveRecord::Schema.define(version: 2020_06_10_120633) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

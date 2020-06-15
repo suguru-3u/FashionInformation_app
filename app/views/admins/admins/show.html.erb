@@ -1,2 +1,38 @@
-<h1>Admins::Admins#show</h1>
-<p>Find me in app/views/admins/admins/show.html.erb</p>
+<div class="container">
+  <h2 class ='text-center mt-3 mb-3'>My Page</h2>
+  <div class="row pt-3 justify-content-between">
+    <div class="col-4">
+      <div class="card">
+        <%= image_tag 'burgess-milner-OYYE4g-I5ZQ-unsplash.jpg',class: 'card-img-top'%>
+        <div class="card-body">
+          <h3 class='card-title'>ユーザー情報一覧</h3>
+          <p class='card-text'>
+            <%= link_to 'ユーザー情報',admins_users_path,class: 'btn btn-info' %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card ">
+        <%= image_tag 'burgess-milner-OYYE4g-I5ZQ-unsplash.jpg',class: 'card-img-top'%>
+        <div class="card-body">
+          <h3 class='card-title'>質問情報一覧</h3>
+          <p class='card-text'>
+            <%= link_to '質問情報一覧',admins_posts_path,class: 'btn btn-primary' %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <%= image_tag 'burgess-milner-OYYE4g-I5ZQ-unsplash.jpg',class: 'card-img-top'%>
+        <div class="card-body">
+          <h3 class='card-title'>お問い合わせ一覧</h3>
+          <p class='card-text'>
+            <%= link_to 'お問い合わせ情報',admins_admins_path,class: 'btn btn-primary' %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
