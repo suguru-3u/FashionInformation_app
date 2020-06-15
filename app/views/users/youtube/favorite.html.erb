@@ -1,19 +1,20 @@
-<h2>Youtubeお気に入り動画一覧</h2>
+<div class="container">
+  <h2 class = 'text-center mt-3 mb-3'>Youtubeお気に入り動画一覧</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>タイトル</th><th>副題</th><th></th>
-    </tr>
-  </thead>
-  <% @youtubes.each do |youtube| %>
-  <tbody>
-    <tr>
-      <td><%= youtube.youtube_title %></td><br>
-      <td><%= youtube.youtube_comment %></td><br>
-      <td><%= link_to '動画を見る',youtube.youtube_url_was %></td>
-      <td><%= link_to '削除する',users_youtube_path(youtube),method: :delete %></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>タイトル</th><th></th><th></th>
+      </tr>
+    </thead>
+    <% @youtubes.each do |youtube| %>
+    <tbody>
+      <tr>
+        <td><%= youtube.youtube_comment %></td><br>
+        <td><%= link_to '動画を見る',youtube.youtube_url_was %></td>
+        <td><%= link_to '削除する',users_youtube_path(youtube),method: :delete %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

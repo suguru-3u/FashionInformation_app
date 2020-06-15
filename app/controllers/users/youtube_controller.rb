@@ -9,7 +9,7 @@ class Users::YoutubeController < ApplicationController
     opt = {
       q: keyword,
       type: 'video',
-      max_results: 2,
+      max_results: 4,
       order: :date,
       page_token: next_page_token,
       published_after: after.iso8601,
@@ -19,7 +19,9 @@ class Users::YoutubeController < ApplicationController
   end
 
   def index
-    @youtube_data = find_videos('黒スキニー')
+    if params[:keyword]
+      @youtube_data = find_videos(params[:keyword])
+    end
     @youtube = Youtube.new
   end
 
