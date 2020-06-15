@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_124809) do
+ActiveRecord::Schema.define(version: 2020_06_15_133857) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 2020_06_15_124809) do
   create_table "notices", force: :cascade do |t|
     t.string "announce_title"
     t.text "announce_body"
-    t.integer "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

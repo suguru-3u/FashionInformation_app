@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :admins do
+    get 'notices/index'
+    get 'notices/edit'
+  end
+  namespace :admins do
+    get 'notice/index'
+    get 'notice/edit'
+  end
   namespace :users do
     get 'notices/index'
     get 'notices/show'
@@ -73,6 +81,7 @@ Rails.application.routes.draw do
     resources :users, only:[:index,:edit,:destroy,:update]
     resources :posts, only:[:index,:edit,:destroy,:update]
     resources :contacts, only:[:index,:show,:destroy,:update]
+    resources :notices, only: [:index,:edit,:update,:destroy,:create]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
