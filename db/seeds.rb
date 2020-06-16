@@ -11,3 +11,9 @@ Admin.create!(
    email: 'test@test.com',
    password: 'testtest',
 )
+
+Admin.create!(
+   name: 'test',
+   email: 'suguru.13579515@gmail.com',
+   password: 'testtest',
+)
