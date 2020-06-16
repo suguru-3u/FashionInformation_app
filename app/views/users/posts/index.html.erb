@@ -9,7 +9,7 @@
         <%= f.text_field :name, placeholder: "検索", class: "search-inputa ",id: 'search-input', autocomplete:'off' %>
       </div>
       <div>
-        <%= f.submit :search,class: 'btn btn-info ml-3' %>
+        <%= f.submit :search,class: 'btn btn-info ml-3 '%>
       </div>
       <% end %>
     </div>
@@ -24,7 +24,7 @@
   <h2 class = "mb-3 mt-3 ">質問投稿</h2>
   <div class="row">
     <div class="col-3">
-      <%= form_for(@post,url: users_posts_path, method: :post) do |f| %>
+      <%= form_with(model:@post,url: users_posts_path, method: :post) do |f| %>
 
       <!-- エラーメッセージ表示-->
       <% if @post.errors.any? %>
@@ -39,28 +39,28 @@
       <!-- ユーザー情報表示-->
         <div >
           <%= f.label :'タイトル' %><br>
-          <%= f.text_field :title,class:'form-control' %>
+          <%= f.text_field :title,class:'form-control',id:'post_title' %>
         </div>
 
         <div class="mt-4">
           <%= f.label :'画像' %><br/>
-          <%= f.attachment_field :post_image %>
+          <%= f.attachment_field :post_image,id:'post_image' %>
         </div>
 
         <div class="mt-4 ">
           <%= f.label :'本文' %><br/>
-          <%= f.text_area :post_body,class:'form-control' %>
+          <%= f.text_area :post_body,class:'form-control',id:'post_body' %>
         </div>
 
       <div class="mt-4">
-        <%= f.submit "投稿する",class: 'btn btn-info'%>
+        <%= f.submit "投稿する",class: 'btn btn-info post_submit'%>
       </div>
 
       <% end %>
     </div>
 
     <div class="col-9">
-      <div class="row">
+      <div class="row" id='post_card'>
        <% @posts.each do |post| %>
         <div class="col-4 mb-5">
           <div class="card">
@@ -70,9 +70,9 @@
               <p class = 'class='card-text''>
                 <%= link_to '見る',users_post_path(post)%><br>
                 <% if post.favorites_user(current_user.id, post.id) %>
-                 <%= link_to 'お気に入り解除',users_post_favorites_path(post),method: :delete %><%= post.favorites.count %>
+                 <%= link_to 'お気に入り解除',users_post_favorites_path(post),method: :delete %>
                 <% else %>
-                 <%= link_to 'お気に入り',users_post_favorites_path(post),method: :post %><%= post.favorites.count %>
+                 <%= link_to 'お気に入り',users_post_favorites_path(post),method: :post %>
                 <% end %>
                 <% if post.user_id == current_user.id %>
                  <%= link_to '編集',edit_users_post_path(post) %>

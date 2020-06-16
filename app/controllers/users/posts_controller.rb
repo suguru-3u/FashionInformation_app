@@ -9,7 +9,14 @@ class Users::PostsController < ApplicationController
   def create
     @posts = Post.all
     @post = current_user.posts.new(posts_params)
-    @post.save ? redirect_to(users_posts_path) : render(:index)
+    if @post.save
+      respond_to do |format|
+        format.html { redirect_to(users_posts_path) }
+        format.json
+      end
+    else
+      render(:index)
+    end
   end
 
 
