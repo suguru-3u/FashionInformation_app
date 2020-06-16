@@ -90,6 +90,12 @@ gem 'jquery-rails'
 # bootstrapアイコン
 gem "font-awesome-rails"
 
+# メールでの日本語対応
+gem 'mail-iso-2022-jp'
+
+# 定期実行
+gem 'whenever', require: false
+
 # 本番環境のdb
 group :production do
   gem 'mysql2'

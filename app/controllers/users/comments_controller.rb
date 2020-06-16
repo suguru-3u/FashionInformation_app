@@ -3,9 +3,11 @@ class Users::CommentsController < ApplicationController
   # コメント生成
   def create
     post = Post.find(params[:post_id])
+    @user = post.user
     @comment = post.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
+      NotificationMailer.complete_mail(@user).deliver_now
       redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)
