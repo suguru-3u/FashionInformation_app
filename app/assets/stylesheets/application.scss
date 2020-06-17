@@ -18,3 +18,24 @@
 .login{
   height: 700px;
 }
+
+.my-page{
+  background: image-url('vadim-sherbakov-tCICLJ5ktBE-unsplash.jpg')
+  center no-repeat;
+  background-size: cover;
+  height: 760px;
+
+  .my-page-top{
+    color: #EEEEEE;
+  }
+}
+.my-page-box{
+  border: 1px solid #D3D3D3;
+}
+
+.my-page-content{
+  color: #D3D3D3;
+  .my-page-link{
+  color: #D3D3D3;
+  }
+}

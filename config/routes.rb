@@ -1,30 +1,8 @@
 Rails.application.routes.draw do
 
-  namespace :admins do
-    get 'notices/index'
-    get 'notices/edit'
-  end
-  namespace :admins do
-    get 'notice/index'
-    get 'notice/edit'
-  end
-  namespace :users do
-    get 'notices/index'
-    get 'notices/show'
-  end
-  namespace :users do
-    get 'notes/index'
-  end
-  get 'notes/index'
-  namespace :users do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-    get 'posts/new'
-  end
-
   root to: 'users/homes#top'
   get 'homes/about' => 'homes#about'
+
 
 # デバイスのURL
   devise_for :users, controllers: {
@@ -47,8 +25,7 @@ Rails.application.routes.draw do
 # ユーザー側のURL
   namespace :users do
     resource :passwords, only: [:create,:update]
-    get 'homes/top' => 'homes#top'
-    get 'homes/about' => 'homes#about'
+    get 'homes/my_page' => 'homes#my_page'
     resource :users, only:[:show,:edit,:update]
     resources :contacts, only: [:new,:create]
     resources :youtube, only: [:index,:create,:destroy]

@@ -2,16 +2,22 @@
   <h2 class = 'text-center mt-3 mb-3'>コメント一覧</h2>
   <div class="row">
     <div class="col-3">
-      <h3>質問内容</h3>
-      <p>
-        タイトル<br>
-        <%= @post.title %>
-      </p>
-      <p>
-        本文<br>
-        <%= @post.post_body %>
-      </p>
-      <%= attachment_image_tag(@post,:post_image, fallback: "no_image.jpg") %>
+      <div class="card">
+        <%= attachment_image_tag(@post,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+        <div class="card-body">
+          <h3>質問内容</h3>
+          <div class="card-text">
+            <p>
+              タイトル<br>
+              <%= @post.title %>
+            </p>
+            <p>
+              本文<br>
+              <%= @post.post_body %>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-9">
       <div class="row">

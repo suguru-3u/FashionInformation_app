@@ -1,63 +1,129 @@
-<div class="my-page">
-  <div class="container">
-    <div class="row pt-5 mb-5">
-      <div class="  col-4">
-        <div class = " my-page-box p-5">
-          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">洋服の質問をする</h3>
-          <div class="my-page-content">
-            <p>ここではファッションに関するお悩みや疑問の質問を行うことができます。</p>
-            <%= link_to 'こちらをクリック',users_posts_path,class: 'my-page-link' %>
-          </div>
+<div class="container">
+  <h2 class = 'text-center mt-4 mb-4'>マイページ</h2>
+
+  <div class="row">
+    <div class="col-3">
+      <div class="card p-3">
+        <h5 class = "mb-3 mt-3 text-center">ユーザー情報</h5>
+        <%= form_for(@user,url: users_users_path, method: :PATCH) do |f| %>
+
+        <!-- エラーメッセージ表示-->
+        <% if @user.errors.any? %>
+        <h3><%= @user.errors.count %>件のエラーが発生</h3>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+        <% end %>
+
+        <!-- ユーザー情報表示-->
+        <div>
+          <%= f.label :'名前' %><br>
+          <%= f.text_field :name,class:'form-control',id:'post_title' %>
         </div>
-      </div>
-      <div class="col-4">
-        <div class = "my-page-box p-5">
-          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">Youtube動画検索</h3>
-          <div class="my-page-content">
-            <p>ファッション系Youtuberから情報を<br>GETしちゃおう!</p>
-            <%= link_to 'こちらをクリック',users_posts_path,class: 'my-page-link' %>
-          </div>
+
+        <div class="mt-4 ">
+          <%= f.label :'メールアドレス' %><br/>
+          <%= f.text_area :email,class:'form-control',id:'post_body' %>
         </div>
-      </div>
-      <div class="col-4">
-        <div class = "my-page-box p-5">
-          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">Instagram画像検索</h3>
-          <div class="my-page-content">
-            <p>Instagramから流行りのコーデを取得しちゃおう!</p>
-            <%= link_to 'こちらをクリック',users_posts_path,class: 'my-page-link' %>
-          </div>
+
+        <div class="mt-4">
+          <%= f.submit "変更する",class: 'btn btn-info post_submit'%>
         </div>
+
+        <% end %>
       </div>
     </div>
-    <div class="row pt-5 pb-5">
-      <div class="col-4">
-        <div class = "my-page-box p-5">
-          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">洋服の情報の投稿</h3>
-          <div class="my-page-content">
-            <p>ここではファッションに関する情報を発信することができます！。</p>
-            <%= link_to 'こちらをクリック',users_posts_path,class: 'my-page-link' %>
+
+    <div class="col-9 wrap">
+      <ul id="tab-menu" class="clearfix">
+        <li><a href="#tab1" class="active">投稿したお悩み</a></li>
+        <li><a href="#tab2" class="">ブックマークしたお悩み</a></li>
+        <li><a href="#tab3" class="">コメントしたお悩み</a></li>
+        <li><a href="#tab3" class="">解決したお悩み</a></li>
+      </ul>
+
+      <div id="tab-contents" class="clearfix">
+        <div id="tab1" class="tab">
+          <div class="row" id='post_card'>
+           <% @posts.each do |post| %>
+            <div class="col-4 mb-5">
+              <div class="card">
+               <%= attachment_image_tag(post,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+                 <div class="card-body">
+                  <%= post.title %>
+                  <p class = 'class='card-text''>
+                    <%= link_to '見る',users_post_path(post)%><br>
+                    <% if post.favorites_user(current_user.id, post.id) %>
+                     <%= link_to 'お気に入り解除',users_post_favorites_path(post),method: :delete %>
+                    <% else %>
+                     <%= link_to 'お気に入り',users_post_favorites_path(post),method: :post %>
+                    <% end %>
+                    <% if post.user_id == current_user.id %>
+                     <%= link_to '編集',edit_users_post_path(post) %>
+                     <%= link_to '削除',users_post_path(post),method: :delete %>
+                    <% end %>
+                  </p>
+                 </div>
+              </div>
+            </div>
+            <% end %>
           </div>
         </div>
-      </div>
-      <div class="col-4">
-        <div class = "my-page-box p-5">
-          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">お知らせ</h3>
-          <div class="my-page-content">
-            <p>運営からお知らせが届くことがあります.........たまにはチェックしてね</p>
-            <%= link_to 'こちらをクリック',users_posts_path,class: 'my-page-link' %>
+        <div id="tab2" class="tab">
+          <div class="row" id='post_card'>
+           <% @current_user_favorites.each do |current_user_favorites| %>
+            <div class="col-4 mb-5">
+              <div class="card">
+               <%= attachment_image_tag(current_user_favorites,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+                 <div class="card-body">
+                  <%= current_user_favorites.title %>
+                  <p class = 'class='card-text''>
+                    <%= link_to '見る',users_post_path(current_user_favorites)%><br>
+                    <% if current_user_favorites.favorites_user(current_user.id, current_user_favorites.id) %>
+                     <%= link_to 'お気に入り解除',users_post_favorites_path(current_user_favorites),method: :delete %>
+                    <% else %>
+                     <%= link_to 'お気に入り',users_post_favorites_path(current_user_favorites),method: :post %>
+                    <% end %>
+                    <% if current_user_favorites.id == current_user.id %>
+                     <%= link_to '編集',edit_users_post_path(current_user_favorites) %>
+                     <%= link_to '削除',users_post_path(current_user_favorites),method: :delete %>
+                    <% end %>
+                  </p>
+                 </div>
+              </div>
+            </div>
+            <% end %>
           </div>
         </div>
-      </div>
-      <div class="col-4">
-        <div class = "my-page-box p-5">
-          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">お問い合わせ</h3>
-          <div class="my-page-content">
-            <p>運営にご意見がありましたらこちらまで</p>
-            <%= link_to 'こちらをクリック',users_posts_path,class: 'my-page-link' %>
+        <div id="tab3" class="tab">
+          <div class="row" id='post_card'>
+           <% @current_user_comments.each do |current_user_comments| %>
+            <div class="col-4 mb-5">
+              <div class="card">
+               <%= attachment_image_tag(current_user_comments,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+                 <div class="card-body">
+                  <%= current_user_comments.title %>
+                  <p class = 'class='card-text''>
+                    <%= link_to '見る',users_post_path(current_user_comments)%><br>
+                    <% if current_user_comments.favorites_user(current_user.id, current_user_comments.id) %>
+                     <%= link_to 'お気に入り解除',users_post_favorites_path(current_user_comments),method: :delete %>
+                    <% else %>
+                     <%= link_to 'お気に入り',users_post_favorites_path(current_user_comments),method: :post %>
+                    <% end %>
+                    <% if current_user_comments.id == current_user.id %>
+                     <%= link_to '編集',edit_users_post_path(current_user_comments) %>
+                     <%= link_to '削除',users_post_path(current_user_comments),method: :delete %>
+                    <% end %>
+                  </p>
+                 </div>
+              </div>
+            </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
