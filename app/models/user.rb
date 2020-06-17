@@ -10,9 +10,11 @@ class User < ApplicationRecord
   has_many :youtubes, dependent: :destroy
   has_many :contacts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :comments_post, through: :comments, source: :post
   has_many :favorites, dependent: :destroy
-  has_many :notes, dependent: :destroy
   has_many :favorites_post, through: :favorites, source: :post
+  has_many :notes, dependent: :destroy
+
 
   # バリデーション
   validates :name, presence: true

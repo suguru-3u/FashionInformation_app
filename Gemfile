@@ -96,6 +96,9 @@ gem 'mail-iso-2022-jp'
 # 定期実行
 gem 'whenever', require: false
 
+# デバック
+gem 'byebug'
+
 # 本番環境のdb
 group :production do
   gem 'mysql2'

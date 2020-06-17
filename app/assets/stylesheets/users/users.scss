@@ -2,23 +2,55 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.my-page{
-  background: image-url('vadim-sherbakov-tCICLJ5ktBE-unsplash.jpg')
-  center no-repeat;
-  background-size: cover;
-  height: 760px;
 
-  .my-page-top{
-    color: #EEEEEE;
-  }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.my-page-box{
+
+
+.clearfix:after{
+  content:"";
+  clear: both;
+  display: block;
+}
+
+#tab-menu  {
+  margin-bottom: 0;
+}
+
+#tab-menu li {
+  float: left;
+  list-style-type: none;
+  width: 25%;
+}
+
+#tab-menu a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #D3D3D3;
   border: 1px solid #D3D3D3;
+  border-bottom: none;
 }
 
-.my-page-content{
-  color: #D3D3D3;
-  .my-page-link{
-  color: #D3D3D3;
-  }
+#tab-menu .active {
+  background: #fff;
+  color: #000;
+}
+
+#tab-contents .tab {
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #D3D3D3;
+  border-top: none;
+}
+
+#tab-contents p{
+  color:#000;
+  line-height: 2.5;
 }
