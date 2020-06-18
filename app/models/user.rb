@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorites_post, through: :favorites, source: :post
   has_many :notes, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
 
   # バリデーション
