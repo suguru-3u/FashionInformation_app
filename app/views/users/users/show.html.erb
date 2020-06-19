@@ -41,7 +41,7 @@
         <li><a href="#tab1" class="active">投稿したお悩み</a></li>
         <li><a href="#tab2" class="">ブックマークしたお悩み</a></li>
         <li><a href="#tab3" class="">コメントしたお悩み</a></li>
-        <li><a href="#tab3" class="">解決したお悩み</a></li>
+        <li><a href="#tab4" class="">解決したお悩み</a></li>
       </ul>
 
       <div id="tab-contents" class="clearfix">
@@ -70,6 +70,9 @@
             </div>
             <% end %>
           </div>
+          <div class='mb-5'>
+            <%= paginate @posts %>
+          </div>
         </div>
         <div id="tab2" class="tab">
           <div class="row" id='post_card'>
@@ -96,6 +99,9 @@
             </div>
             <% end %>
           </div>
+          <div class='mb-5'>
+            <%= paginate @current_user_favorites %>
+          </div>
         </div>
         <div id="tab3" class="tab">
           <div class="row" id='post_card'>
@@ -121,6 +127,38 @@
               </div>
             </div>
             <% end %>
+          </div>
+          <div class='mb-5'>
+            <%= paginate @current_user_comments %>
+          </div>
+        </div>
+        <div id="tab4" class="tab">
+          <div class="row" id='post_card'>
+           <% @solution_posts.each do |solution_posts| %>
+            <div class="col-4 mb-5">
+              <div class="card">
+               <%= attachment_image_tag(solution_posts,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+                 <div class="card-body">
+                  <%= solution_posts.title %>
+                  <p class = 'class='card-text''>
+                    <%= link_to '見る',users_post_path(solution_posts)%><br>
+                    <% if solution_posts.favorites_user(current_user.id, solution_posts.id) %>
+                     <%= link_to 'お気に入り解除',users_post_favorites_path(solution_posts),method: :delete %>
+                    <% else %>
+                     <%= link_to 'お気に入り',users_post_favorites_path(solution_posts),method: :post %>
+                    <% end %>
+                    <% if solution_posts.id == current_user.id %>
+                     <%= link_to '編集',edit_users_post_path(solution_posts) %>
+                     <%= link_to '削除',users_post_path(solution_posts),method: :delete %>
+                    <% end %>
+                  </p>
+                 </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <div class='mb-5'>
+            <%= paginate @solution_posts %>
           </div>
         </div>
       </div>

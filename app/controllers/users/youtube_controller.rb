@@ -36,7 +36,7 @@ class Users::YoutubeController < ApplicationController
   end
 
   def favorite
-    @youtubes = current_user.youtubes
+    @youtubes = current_user.youtubes.order(created_at: "DESC").page(params[:page]).per(15)
   end
 
   private

@@ -3,7 +3,8 @@ class Users::PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.where(solution: false).order(created_at: "DESC") 
+    @posts = Post.where(solution: false).order(created_at: "DESC").page(params[:page]).per(9)
+    @users = User.order(answer_point: "DESC").limit(3)
   end
 
   def create
@@ -21,8 +22,8 @@ class Users::PostsController < ApplicationController
 
 
   def show
-    @comments = @post.comments
-    @comment = @post.comments.build
+    @comments = @post.comments.page(params[:page]).per(9)
+    @comment = Comment.new
   end
 
   def edit

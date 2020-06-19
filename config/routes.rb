@@ -33,7 +33,9 @@ Rails.application.routes.draw do
     resources :notices, only: [:index,:show]
     get '/users/youtube' => '/users/youtube#favorite'
     resources :posts do
-      resources :comments, only: [:create,:destroy]
+      resources :comments, only: [:create,:destroy] do
+        resource :answers, only: [:create, :destroy]
+      end
       resource :favorites, only: [:create, :destroy]
     end
     get '/users/posts' => '/users/posts#search'

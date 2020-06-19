@@ -2,9 +2,10 @@ class Users::UsersController < ApplicationController
   before_action :user_information, only:[:show,:update]
 
   def show
-    @posts = current_user.posts.order(created_at: "DESC")
-    @current_user_favorites = current_user.favorites_post.order(created_at: "DESC")
-    @current_user_comments = current_user.comments_post.order(created_at: "DESC") 
+    @posts = current_user.posts.order(created_at: "DESC").page(params[:page]).per(9)
+    @current_user_favorites = current_user.favorites_post.order(created_at: "DESC").page(params[:page]).per(9)
+    @current_user_comments = current_user.comments_post.order(created_at: "DESC").page(params[:page]).per(9)
+    @solution_posts = Post.where(solution: true).order(created_at: "DESC").page(params[:page]).per(9)
   end
 
   def update

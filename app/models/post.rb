@@ -15,6 +15,11 @@ class Post < ApplicationRecord
 		    Favorite.where(user_id: user_id, post_id: post_id).exists?
     end
 
+    # good_answerしているのかのチェックメゾット
+    def answers_user(user_id, cooment_id)
+        Answer.where(user_id: user_id, cooment_id: cooment_id).exists?
+    end
+
     # 検索メゾット
     def self.search(search)
       return Post.all unless search
