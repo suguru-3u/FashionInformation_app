@@ -1,3 +1,5 @@
+  <% rank = 0 %>
+
 <div class="container">
   <h2 class = 'text-center mt-3 mb-3'>質問一覧</h2>
 
@@ -59,30 +61,68 @@
       <% end %>
     </div>
 
-    <div class="col-9">
-      <div class="row" id='post_card'>
-       <% @posts.each do |post| %>
-        <div class="col-4 mb-5">
-          <div class="card">
-           <%= attachment_image_tag(post,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
-             <div class="card-body">
-              <%= post.title %>
-              <p class = 'class='card-text''>
-                <%= link_to '見る',users_post_path(post)%><br>
-                <% if post.favorites_user(current_user.id, post.id) %>
-                 <%= link_to 'お気に入り解除',users_post_favorites_path(post),method: :delete %>
-                <% else %>
-                 <%= link_to 'お気に入り',users_post_favorites_path(post),method: :post %>
-                <% end %>
-                <% if post.user_id == current_user.id %>
-                 <%= link_to '編集',edit_users_post_path(post) %>
-                 <%= link_to '削除',users_post_path(post),method: :delete %>
-                <% end %>
-              </p>
-             </div>
+    <div class="col-9 wrap">
+      <ul id="tab-menu" class="clearfix">
+        <li><a href="#tab1" class="active">お悩み一覧</a></li>
+        <li><a href="#tab2" class="">Good comment rank</a></li>
+      </ul>
+
+      <div id="tab-contents" class="clearfix">
+        <div id="tab1" class="tab">
+          <div class="row" id='post_card'>
+           <% @posts.each do |post| %>
+            <div class="col-4 mb-3">
+              <div class="card">
+               <%= attachment_image_tag(post,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+                 <div class="card-body">
+                  <%= post.title %>
+                  <p class = 'class='card-text''>
+                    <%= link_to '見る',users_post_path(post)%><br>
+                    <% if post.favorites_user(current_user.id, post.id) %>
+                     <%= link_to 'お気に入り解除',users_post_favorites_path(post),method: :delete %>
+                    <% else %>
+                     <%= link_to 'お気に入り',users_post_favorites_path(post),method: :post %>
+                    <% end %>
+                    <% if post.user_id == current_user.id %>
+                     <%= link_to '編集',edit_users_post_path(post) %>
+                     <%= link_to '削除',users_post_path(post),method: :delete %>
+                    <% end %>
+                  </p>
+                 </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <div class='mb-5'>
+            <%= paginate @posts %>
           </div>
         </div>
-        <% end %>
+        <div id="tab2" class="tab">
+          <div class="row" id='post_card'>
+            <% @users.each do |users| %>
+            <table class = "table">
+              <thead>
+                <tr>
+                  <th>順位</th><th>ユーザー名</th><th>Good answer数</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <%= rank += 1 %>
+                  </td>
+                  <td>
+                    <%= users.name %>
+                  </td>
+                  <td>
+                    <%= users.answer_point %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

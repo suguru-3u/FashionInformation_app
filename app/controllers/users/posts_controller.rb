@@ -3,7 +3,8 @@ class Users::PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.all
+    @posts = Post.where(solution: false).order(created_at: "DESC").page(params[:page]).per(9)
+    @users = User.order(answer_point: "DESC").limit(3)
   end
 
   def create
@@ -21,14 +22,18 @@ class Users::PostsController < ApplicationController
 
 
   def show
-    @comments = @post.comments
-    @comment = @post.comments.build
+    @comments = @post.comments.page(params[:page]).per(9)
+    @comment = Comment.new
   end
 
   def edit
   end
 
   def update
+    if params[:solution]
+      @post.solution = params[:solution]
+      @post.update ? redirect_to(users_posts_path) : render(:show)
+    end
     @post.update(posts_params) ? redirect_to(users_posts_path) : render(:edit)
   end
 
@@ -37,7 +42,6 @@ class Users::PostsController < ApplicationController
   end
 
   def search
-
    if params[:name]
      if params[:name].empty?
      @posts = Post.none
@@ -57,7 +61,7 @@ class Users::PostsController < ApplicationController
 
   private
   def posts_params
-    params.require(:post).permit(:title,:post_body,:post_image)
+    params.require(:post).permit(:title,:post_body,:post_image,:solution)
   end
 
   def post_get_id

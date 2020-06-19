@@ -99,7 +99,15 @@ gem 'whenever', require: false
 # デバック
 gem 'byebug'
 
+# ページネーション機能
+gem 'kaminari'
+
 # 本番環境のdb
 group :production do
   gem 'mysql2'
+end
+
+# 開発環境のdb
+group :development do
+  gem 'letter_opener'
 end
