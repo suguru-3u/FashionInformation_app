@@ -7,6 +7,8 @@
         <div class="card-body">
           <h3 class='card-title'>ユーザー情報一覧</h3>
           <p class='card-text'>
+            <%= "現在の登録者人数は#{@users}人" %><br>
+            <%= "本日の登録者人数は#{@today_registrations}人" %><br>
             <%= link_to 'ユーザー情報',admins_users_path,class: 'btn btn-info' %>
           </p>
         </div>
@@ -18,6 +20,7 @@
         <div class="card-body">
           <h3 class='card-title'>質問情報一覧</h3>
           <p class='card-text'>
+            <%= "現在のお悩み数は#{@posts}です" %><br><br>
             <%= link_to '質問情報一覧',admins_posts_path,class: 'btn btn-primary' %>
           </p>
         </div>
@@ -29,6 +32,7 @@
         <div class="card-body">
           <h3 class='card-title'>お問い合わせ一覧</h3>
           <p class='card-text'>
+            <%= "現在のお悩み数は#{@contacts}です" %><br><br>
             <%= link_to 'お問い合わせ情報',admins_admins_path,class: 'btn btn-primary' %>
           </p>
         </div>
