@@ -6,8 +6,12 @@
 .top-image{
   height: 500px;
 }
-.carousel-item h5{
-  margin-bottom: 300px;
+.carousel-item h2{
+  margin-bottom: 200px;
+}
+
+.top-page{
+  background-color: #F5F5F5;
 }
 
 
@@ -61,4 +65,29 @@ span{
 .about-image{
   height: 300px;
   width: 300px;
+}
+
+// my-page.scss
+.my-page{
+  background: image-url('vadim-sherbakov-tCICLJ5ktBE-unsplash.jpg')
+  center no-repeat;
+  background-size: cover;
+
+  .my-page-top{
+    color: #EEEEEE;
+  }
+}
+.my-page-box{
+  border: 1px solid #D3D3D3;
+}
+
+.my-page-content{
+  color: #D3D3D3;
+  .my-page-link{
+  color: #D3D3D3;
+  }
+}
+
+.dropdown-item:active{
+  background-color: #343a40 ;
 }

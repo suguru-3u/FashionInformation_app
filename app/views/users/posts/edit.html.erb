@@ -1,5 +1,5 @@
-<div class="container">
-  <h2>メモ詳細</h2>
+<div class="container pt-5 mt-5">
+  <h2>詳細</h2>
   <%= form_for(@post,url:users_note_path , method: :PATCH) do |f| %>
 
   <!-- エラーメッセージ表示-->
@@ -21,7 +21,7 @@
 
     <div class="col">
       <%= f.label :'本文' %><br/>
-      <%= f.text_area :post_body,class:'form-control' %>
+      <%= f.text_area :post_body,class:'form-control ', rows: 5 %>
     </div>
   </div>
 

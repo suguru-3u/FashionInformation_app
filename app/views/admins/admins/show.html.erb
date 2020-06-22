@@ -1,35 +1,39 @@
 <div class="container">
   <h2 class ='text-center mt-3 mb-3'>My Page</h2>
   <div class="row pt-3 justify-content-between">
-    <div class="col-4">
+    <div class="col-lg-4 pb-5">
       <div class="card">
-        <%= image_tag 'burgess-milner-OYYE4g-I5ZQ-unsplash.jpg',class: 'card-img-top'%>
+        <%= image_tag 'hannah-morgan-ycVFts5Ma4s-unsplash.jpg',class: 'card-img-top'%>
         <div class="card-body">
           <h3 class='card-title'>ユーザー情報一覧</h3>
           <p class='card-text'>
-            <%= link_to 'ユーザー情報',admins_users_path,class: 'btn btn-info' %>
+            <%= "現在の登録者人数は#{@users}人" %><br>
+            <%= "本日の登録者人数は#{@today_registrations}人" %><br>
+            <%= link_to 'ユーザー情報',admins_users_path,class: 'mt-3 btn btn-info' %>
           </p>
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 pb-5">
       <div class="card ">
         <%= image_tag 'burgess-milner-OYYE4g-I5ZQ-unsplash.jpg',class: 'card-img-top'%>
         <div class="card-body">
           <h3 class='card-title'>質問情報一覧</h3>
           <p class='card-text'>
-            <%= link_to '質問情報一覧',admins_posts_path,class: 'btn btn-primary' %>
+            <%= "現在のお悩み数は#{@posts}です" %><br><br>
+            <%= link_to '質問情報一覧',admins_posts_path,class: 'mt-3 btn btn-primary' %>
           </p>
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 pb-5">
       <div class="card">
-        <%= image_tag 'burgess-milner-OYYE4g-I5ZQ-unsplash.jpg',class: 'card-img-top'%>
+        <%= image_tag 'umit-bulut-qbTC7ZwJB64-unsplash.jpg',class: 'card-img-top'%>
         <div class="card-body">
           <h3 class='card-title'>お問い合わせ一覧</h3>
           <p class='card-text'>
-            <%= link_to 'お問い合わせ情報',admins_admins_path,class: 'btn btn-primary' %>
+            <%= "現在のお問い合わせ数は#{@contacts}です" %><br><br>
+            <%= link_to 'お問い合わせ情報',admins_contacts_path,class: 'mt-3 btn btn-success' %>
           </p>
         </div>
       </div>

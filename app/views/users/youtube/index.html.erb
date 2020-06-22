@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container pt-5 mt-5">
   <!-- Youtube検索フォーム -->
   <h2 class = 'text-center mt-3 mb-3'>Youtube動画の検索</h2>
+  <p class = 'text-center'>以下の検索バーからファッション情報をYoutubeから取得できます。</p>
   <div class="row justify-content-center mb-5">
     <%= form_tag(users_youtube_index_path, method: :get) do %>
       <input placeholder="検索" class="search-inputa "autocomplete="off" type="text" name="keyword">
@@ -8,13 +9,16 @@
     <% end %>
   </div>
 
+
   <% unless @youtube_data.nil? %>
     <div class="row">
       <% @youtube_data.items.each do |item| %>
-      <div class="col-6 border p-3 mb-5">
+      <div class="col-lg-6 border p-3 mb-5">
         <% snippet = item.snippet %>
-        <p class = "Youtube_title"><%= snippet.title %></p>
-        <p><%= snippet.channel_title %></p>
+        <p class = "Youtube_title">
+          <%= snippet.title %><br>
+          <%= snippet.channel_title %>
+        </p>
         <div><iframe class = "Youtube_video" width="535" height="315" src="https://www.youtube.com/embed/<%= @Youtube_url = item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
         <%# Youtube動画情報の変数代入 %>

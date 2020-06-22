@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'users/homes#top'
-  get 'homes/about' => 'homes#about'
+
 
 
 # デバイスのURL
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 # ユーザー側のURL
   namespace :users do
     resource :passwords, only: [:create,:update]
+    get 'homes/about' => 'homes#about'
     get 'homes/my_page' => 'homes#my_page'
     resource :users, only:[:show,:edit,:update]
     resources :contacts, only: [:new,:create]

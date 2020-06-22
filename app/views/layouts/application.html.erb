@@ -4,7 +4,6 @@
     <title>FashionInformationApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -19,7 +18,20 @@
       <% end %>
     </header>
 
-    <%= yield %>
+      <%= yield %>
+    
+
+    <footer class="footer mt-auto py-3 navbar-dark bg-dark fixed-bottom">
+      <div class="container text-center">
+        <%= link_to 'https://twitter.com/', target: :_blank  do  %>
+          <i class="fa fa-twitter text-secondary mr-5">ツイッター</i>
+        <% end %>
+        <%= link_to 'https://www.instagram.com/', target: :_blank  do  %>
+          <i class="fab fa-instagram text-secondary mr-5">インスタグラム</i>
+        <% end %>
+        <span class="text-secondary" >©oohira suguru</span>
+      </div>
+    </footer>
 
   </body>
 </html>

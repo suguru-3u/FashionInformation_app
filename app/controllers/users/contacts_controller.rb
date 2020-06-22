@@ -6,7 +6,12 @@ class Users::ContactsController < ApplicationController
 
   def create
     @contact = current_user.contacts.new(contcts_params)
-    @contact.save ? redirect_to(users_posts_path) : render(:new)
+    if @contact.save
+      NotificationMailer.user_contact.deliver_now
+      redirect_to(users_homes_my_page_path)
+    else
+      render(:new)
+    end
   end
 
   private

@@ -27,7 +27,7 @@ class Users::YoutubeController < ApplicationController
 
   def create
     @youtube = current_user.youtubes.new(youtube_params)
-    @youtube.save ? redirect_to(users_users_path) : render(:index)
+    @youtube.save ? redirect_to(users_users_youtube_path) : render(:index)
   end
 
   def destroy
