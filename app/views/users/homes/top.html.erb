@@ -1,4 +1,4 @@
-<div id="carouselOption1" class="carousel slide" data-ride="carousel">
+<div id="carouselOption1" class="carousel slide top-page" data-ride="carousel">
   <!-- インジケータの設定 -->
   <ol class="carousel-indicators">
     <li data-target="#carouselOption1" data-slide-to="0" class="active"></li>
@@ -9,41 +9,37 @@
     <div class="carousel-item active">
       <%= image_tag 'hannah-morgan-ycVFts5Ma4s-unsplash.jpg',class: "top-image d-block w-100 " %>
       <div class="carousel-caption d-none d-md-block">
-        <%# <h5>第1スライド見出し</h5>
-        <p>スライドイメージの紹介</p> %>
+        <h2>今日何を来ていけばいいのかわからなくなる時がありませんか?</h2>
       </div>
     </div>
     <div class="carousel-item ">
       <%= image_tag 'burgess-milner-OYYE4g-I5ZQ-unsplash.jpg',class:"top-image d-block w-100" %>
       <div class="carousel-caption d-none d-md-block">
-        <%# <h5>第2スライド見出し</h5>
-        <p>スライドイメージの紹介</p> %>
+        <h2>洋服で何を買えばいいのかわからない経験をしたことはありませんか？</h2>
       </div>
     </div>
     <div class="carousel-item ">
       <%= image_tag 'victor-garcia-3YW2jxSblE8-unsplash.jpg',class: "top-image d-block w-100" %>
       <div class="carousel-caption d-none d-md-block">
-        <%# <h5>第3スライド見出し</h5>
-        <p>スライドイメージの紹介</p> %>
+        <h2>このアプリではこのお悩みを解決できます!</h2>
       </div>
     </div>
   </div>
 </div>
 
-<div class = 'container mb-5'>
-  <h2 class='text-center mt-5 mb-5 top-message'>~ご案内~</h2>
-  <div class="row text-center">
-    <div class="col-4">
+<div class = 'container mb-5 '>
+  <div class="row text-center pt-5">
+    <div class="col-lg-4 p-3">
       <h5 class="mb-3">このアプリを初めて利用される方</h5>
       <%= link_to '新規会員登録', new_user_registration_path,class: 'btn btn-primary' %>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 p-3">
       <h5 class="mb-3">既に会員登録済の方</h5>
       <%= link_to 'ログイン', new_user_session_path,class: 'btn btn-success' %>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 p-3">
       <h5 class="mb-3">アプリのことをよく知りたい方</h5>
-      <%= link_to 'アプリ詳細', homes_about_path,class: 'btn btn-info' %>
+      <%= link_to 'アプリ詳細', users_homes_about_path,class: 'btn btn-info' %>
     </div>
   </div>
 </div>

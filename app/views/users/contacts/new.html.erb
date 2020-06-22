@@ -1,6 +1,10 @@
 <div class="user_contact">
-	<div class="container">
+	<div class="container mt-5 pt-5">
 		<h2 class = "pb-3 pt-3 text-center">お問い合わせ</h2>
+		<p class = 'text-center'>
+			このページでは運営にお問い合わせを行うことができます。<br>
+			退会希望者の方はこちらからお願い致します。
+		</p>
 
 		<%= form_for(@contact,url: users_contacts_path, method: :post) do |f| %>
 
@@ -26,7 +30,7 @@
 		</div>
 
 		<div class="mt-4">
-			<%= f.submit "送信",class: 'btn btn-outline-secondary'%>
+			<%= f.submit "送信",class: 'btn btn-outline-primary'%>
 		</div>
 		<% end %>
 	</div>

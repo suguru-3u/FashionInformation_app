@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container mt-5 pt-5 mb-5 pb-5">
   <h2 class = 'text-center mt-4 mb-4'>マイページ</h2>
 
   <div class="row">
-    <div class="col-3">
+    <div class="col-lg-3">
       <div class="card p-3">
         <h5 class = "mb-3 mt-3 text-center">ユーザー情報</h5>
         <%= form_for(@user,url: users_users_path, method: :PATCH) do |f| %>
@@ -29,18 +29,18 @@
         </div>
 
         <div class="mt-4">
-          <%= f.submit "変更する",class: 'btn btn-info post_submit'%>
+          <%= f.submit "変更する",class: 'btn btn-info post_submit mb-5'%>
         </div>
 
         <% end %>
       </div>
     </div>
 
-    <div class="col-9 wrap">
+    <div class="col-lg-9 wrap">
       <ul id="tab-menu" class="clearfix">
         <li><a href="#tab1" class="active">投稿したお悩み</a></li>
-        <li><a href="#tab2" class="">ブックマークしたお悩み</a></li>
-        <li><a href="#tab3" class="">コメントしたお悩み</a></li>
+        <li><a href="#tab2" class="">ブックマーク</a></li>
+        <li><a href="#tab3" class="">コメント</a></li>
         <li><a href="#tab4" class="">解決したお悩み</a></li>
       </ul>
 
@@ -48,21 +48,23 @@
         <div id="tab1" class="tab">
           <div class="row" id='post_card'>
            <% @posts.each do |post| %>
-            <div class="col-4 mb-5">
+            <div class="col-lg-4 mb-5">
               <div class="card">
-               <%= attachment_image_tag(post,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+               <%= attachment_image_tag(post,:post_image, fallback: "no_image.jpg", size:'300x350',class:"card-img-top") %>
                  <div class="card-body">
                   <%= post.title %>
                   <p class = 'class='card-text''>
-                    <%= link_to '見る',users_post_path(post)%><br>
+                    <%= post.created_at.to_s(:datetime_jp) %><br>
+                    <%= "コメント数 : #{post.comments.count}" %><br>
+                    <%= link_to 'お悩みを解決する',users_post_path(post),class: 'btn btn-outline-dark'%><br>
                     <% if post.favorites_user(current_user.id, post.id) %>
-                     <%= link_to 'お気に入り解除',users_post_favorites_path(post),method: :delete %>
+                     <%= link_to 'ブックマーク解除',users_post_favorites_path(post),method: :delete,class: 'btn btn-outline-danger' %><br>
                     <% else %>
-                     <%= link_to 'お気に入り',users_post_favorites_path(post),method: :post %>
+                     <%= link_to 'ブックマーク',users_post_favorites_path(post),method: :post,class: 'btn btn-outline-dark' %><br>
                     <% end %>
                     <% if post.user_id == current_user.id %>
-                     <%= link_to '編集',edit_users_post_path(post) %>
-                     <%= link_to '削除',users_post_path(post),method: :delete %>
+                     <%= link_to '編集',edit_users_post_path(post),class: 'btn btn-outline-success' %>
+                     <%= link_to '削除',users_post_path(post),method: :delete, data: {confirm: "削除しますか？"},class: 'btn btn-outline-danger' %>
                     <% end %>
                   </p>
                  </div>
@@ -77,9 +79,9 @@
         <div id="tab2" class="tab">
           <div class="row" id='post_card'>
            <% @current_user_favorites.each do |current_user_favorites| %>
-            <div class="col-4 mb-5">
+            <div class="col-lg-4 mb-5">
               <div class="card">
-               <%= attachment_image_tag(current_user_favorites,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+               <%= attachment_image_tag(current_user_favorites,:post_image, fallback: "no_image.jpg", size:'300x350',class:"card-img-top") %>
                  <div class="card-body">
                   <%= current_user_favorites.title %>
                   <p class = 'class='card-text''>
@@ -106,9 +108,9 @@
         <div id="tab3" class="tab">
           <div class="row" id='post_card'>
            <% @current_user_comments.each do |current_user_comments| %>
-            <div class="col-4 mb-5">
+            <div class="col-lg-4 mb-5">
               <div class="card">
-               <%= attachment_image_tag(current_user_comments,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+               <%= attachment_image_tag(current_user_comments,:post_image, fallback: "no_image.jpg", size:'300x350',class:"card-img-top") %>
                  <div class="card-body">
                   <%= current_user_comments.title %>
                   <p class = 'class='card-text''>
@@ -135,9 +137,9 @@
         <div id="tab4" class="tab">
           <div class="row" id='post_card'>
            <% @solution_posts.each do |solution_posts| %>
-            <div class="col-4 mb-5">
+            <div class="col-lg-4 mb-5">
               <div class="card">
-               <%= attachment_image_tag(solution_posts,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+               <%= attachment_image_tag(solution_posts,:post_image, fallback: "no_image.jpg", size:'300x350',class:"card-img-top") %>
                  <div class="card-body">
                   <%= solution_posts.title %>
                   <p class = 'class='card-text''>

@@ -8,7 +8,6 @@ class Users::PostsController < ApplicationController
   end
 
   def create
-    @posts = Post.all
     @post = current_user.posts.new(posts_params)
     if @post.save
       respond_to do |format|
@@ -16,6 +15,8 @@ class Users::PostsController < ApplicationController
         format.json
       end
     else
+      @posts = Post.where(solution: false).order(created_at: "DESC").page(params[:page]).per(9)
+      @users = User.order(answer_point: "DESC").limit(3)
       render(:index)
     end
   end
@@ -42,14 +43,16 @@ class Users::PostsController < ApplicationController
   end
 
   def search
+   @post = Post.new
+   @users = User.order(answer_point: "DESC").limit(3)
    if params[:name]
      if params[:name].empty?
-     @posts = Post.none
+       @posts = Post.none.page(params[:page]).per(9)
      else
-     @posts = Post.where('title LIKE(?)', "%#{params[:name]}%")
+       @posts = Post.where('title LIKE(?)', "%#{params[:name]}%").page(params[:page]).per(9)
      end
    else
-     @posts = Post.all
+      @posts = Post.all.page(params[:page]).per(9)
    end
 
    respond_to do |format|
