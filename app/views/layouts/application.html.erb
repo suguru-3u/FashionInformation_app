@@ -18,8 +18,14 @@
       <% end %>
     </header>
 
-      <%= yield %>
-    
+    <div class="notifications text-center text-primary pt-5 mt-5 h3">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: key) %>
+      <% end %>
+    </div>
+
+    <%= yield %>
+
 
     <footer class="footer mt-auto py-3 navbar-dark bg-dark fixed-bottom">
       <div class="container text-center">
