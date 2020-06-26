@@ -14,62 +14,7 @@
       <% if admin_signed_in? %>
         <%= render 'layouts/navbar_admin' %>
       <% else %>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
-        <% if user_signed_in? %>
-          <%= link_to 'ホーム', users_homes_my_page_path,class: 'nav-link text-light' %>
-        <% else %>
-          <span class='nav-link text-light'>FashionInformation_App</span>
-        <% end %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-             <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to "お悩み投稿", users_posts_path,class: 'nav-link' %>
-              </li>
-              <!-- ドロップダウンタイプ -->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Youtube
-                </a>
-                <div class="dropdown-menu navbar-dark bg-dark" aria-labelledby="navbarDropdownMenuLink">
-                  <%= link_to "Youtube検索", users_youtube_index_path,class: 'nav-link dropdown-item'%>
-                  <%= link_to "Youtubeお気に入り", users_users_youtube_path,class: 'nav-link dropdown-item' %>
-                </div>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "ユーザー情報", users_users_path,class: 'nav-link'%>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "お知らせ", users_notices_path,class: 'nav-link'%>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "お問い合わせ", new_users_contact_path,class: 'nav-link'%>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'nav-link'%>
-                </li>
-              <% else %>
-                <li class="nav-item">
-                  <%= link_to ' Top',root_path,class: 'nav-link'%>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "About", users_homes_about_path,class: 'nav-link'%>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path,class: 'nav-link'%>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path,class: 'nav-link'%>
-                </li>
-              </ul>
-            <% end %>
-          </div>
-        </nav>
-
+        <%= render 'layouts/navbar_user' %>
       <% end %>
     </header>
 
