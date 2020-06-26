@@ -12,9 +12,9 @@
     <header>
       <!-- ユーザーと管理者で分けている -->
       <% if admin_signed_in? %>
-        <%= render '/layouts/navbar_admin' %>
+        <%= render 'layouts/navbar_admin' %>
       <% else %>
-        <%= render partial: "layouts/navbar_user" %>
+        <%= render "layouts/navbar_user" %>
       <% end %>
     </header>
 
