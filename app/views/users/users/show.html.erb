@@ -1,5 +1,7 @@
 <div class="container mt-5 pt-5 mb-5 pb-5">
-  <h2 class = 'text-center mt-4 mb-4'>マイページ</h2>
+  <!-- flash_messageを表示 -->
+  <%= render '/layouts/flash_message' %>
+  <h2 class = 'text-center mb-4'>マイページ</h2>
 
   <div class="row">
     <div class="col-lg-3">
@@ -8,14 +10,7 @@
         <%= form_for(@user,url: users_users_path, method: :PATCH) do |f| %>
 
         <!-- エラーメッセージ表示-->
-        <% if @user.errors.any? %>
-        <h3><%= @user.errors.count %>件のエラーが発生</h3>
-        <ul>
-          <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-        <% end %>
+        <%= render partial: "users/shared/error", locals: { user: @user }%>
 
         <!-- ユーザー情報表示-->
         <div>
@@ -46,122 +41,17 @@
 
       <div id="tab-contents" class="clearfix">
         <div id="tab1" class="tab">
-          <div class="row" id='post_card'>
-           <% @posts.each do |post| %>
-            <div class="col-lg-4 mb-5">
-              <div class="card">
-               <%= attachment_image_tag(post,:post_image, fallback: "no_image.jpg", size:'300x350',class:"card-img-top") %>
-                 <div class="card-body">
-                  <%= post.title %>
-                  <p class = 'class='card-text''>
-                    <%= post.created_at.to_s(:datetime_jp) %><br>
-                    <%= "コメント数 : #{post.comments.count}" %><br>
-                    <%= link_to 'お悩みを解決する',users_post_path(post),class: 'btn btn-outline-dark'%><br>
-                    <% if post.favorites_user(current_user.id, post.id) %>
-                     <%= link_to 'ブックマーク解除',users_post_favorites_path(post),method: :delete,class: 'btn btn-outline-danger' %><br>
-                    <% else %>
-                     <%= link_to 'ブックマーク',users_post_favorites_path(post),method: :post,class: 'btn btn-outline-dark' %><br>
-                    <% end %>
-                    <% if post.user_id == current_user.id %>
-                     <%= link_to '編集',edit_users_post_path(post),class: 'btn btn-outline-success' %>
-                     <%= link_to '削除',users_post_path(post),method: :delete, data: {confirm: "削除しますか？"},class: 'btn btn-outline-danger' %>
-                    <% end %>
-                  </p>
-                 </div>
-              </div>
-            </div>
-            <% end %>
-          </div>
-          <div class='mb-5'>
-            <%= paginate @posts %>
-          </div>
+          <%= render partial: "user_post", locals: { posts: @posts } %>
         </div>
+
         <div id="tab2" class="tab">
-          <div class="row" id='post_card'>
-           <% @current_user_favorites.each do |current_user_favorites| %>
-            <div class="col-lg-4 mb-5">
-              <div class="card">
-               <%= attachment_image_tag(current_user_favorites,:post_image, fallback: "no_image.jpg", size:'300x350',class:"card-img-top") %>
-                 <div class="card-body">
-                  <%= current_user_favorites.title %>
-                  <p class = 'class='card-text''>
-                    <%= link_to '見る',users_post_path(current_user_favorites)%><br>
-                    <% if current_user_favorites.favorites_user(current_user.id, current_user_favorites.id) %>
-                     <%= link_to 'お気に入り解除',users_post_favorites_path(current_user_favorites),method: :delete %>
-                    <% else %>
-                     <%= link_to 'お気に入り',users_post_favorites_path(current_user_favorites),method: :post %>
-                    <% end %>
-                    <% if current_user_favorites.id == current_user.id %>
-                     <%= link_to '編集',edit_users_post_path(current_user_favorites) %>
-                     <%= link_to '削除',users_post_path(current_user_favorites),method: :delete %>
-                    <% end %>
-                  </p>
-                 </div>
-              </div>
-            </div>
-            <% end %>
-          </div>
-          <div class='mb-5'>
-            <%= paginate @current_user_favorites %>
-          </div>
+          <%= render partial: "user_post", locals: { posts: @current_user_favorites } %>
         </div>
         <div id="tab3" class="tab">
-          <div class="row" id='post_card'>
-           <% @current_user_comments.each do |current_user_comments| %>
-            <div class="col-lg-4 mb-5">
-              <div class="card">
-               <%= attachment_image_tag(current_user_comments,:post_image, fallback: "no_image.jpg", size:'300x350',class:"card-img-top") %>
-                 <div class="card-body">
-                  <%= current_user_comments.title %>
-                  <p class = 'class='card-text''>
-                    <%= link_to '見る',users_post_path(current_user_comments)%><br>
-                    <% if current_user_comments.favorites_user(current_user.id, current_user_comments.id) %>
-                     <%= link_to 'お気に入り解除',users_post_favorites_path(current_user_comments),method: :delete %>
-                    <% else %>
-                     <%= link_to 'お気に入り',users_post_favorites_path(current_user_comments),method: :post %>
-                    <% end %>
-                    <% if current_user_comments.id == current_user.id %>
-                     <%= link_to '編集',edit_users_post_path(current_user_comments) %>
-                     <%= link_to '削除',users_post_path(current_user_comments),method: :delete %>
-                    <% end %>
-                  </p>
-                 </div>
-              </div>
-            </div>
-            <% end %>
-          </div>
-          <div class='mb-5'>
-            <%= paginate @current_user_comments %>
-          </div>
+          <%= render partial: "user_post", locals: { posts: @current_user_comments } %>
         </div>
         <div id="tab4" class="tab">
-          <div class="row" id='post_card'>
-           <% @solution_posts.each do |solution_posts| %>
-            <div class="col-lg-4 mb-5">
-              <div class="card">
-               <%= attachment_image_tag(solution_posts,:post_image, fallback: "no_image.jpg", size:'300x350',class:"card-img-top") %>
-                 <div class="card-body">
-                  <%= solution_posts.title %>
-                  <p class = 'class='card-text''>
-                    <%= link_to '見る',users_post_path(solution_posts)%><br>
-                    <% if solution_posts.favorites_user(current_user.id, solution_posts.id) %>
-                     <%= link_to 'お気に入り解除',users_post_favorites_path(solution_posts),method: :delete %>
-                    <% else %>
-                     <%= link_to 'お気に入り',users_post_favorites_path(solution_posts),method: :post %>
-                    <% end %>
-                    <% if solution_posts.id == current_user.id %>
-                     <%= link_to '編集',edit_users_post_path(solution_posts) %>
-                     <%= link_to '削除',users_post_path(solution_posts),method: :delete %>
-                    <% end %>
-                  </p>
-                 </div>
-              </div>
-            </div>
-            <% end %>
-          </div>
-          <div class='mb-5'>
-            <%= paginate @solution_posts %>
-          </div>
+          <%= render partial: "user_post", locals: { posts: @solution_posts } %>
         </div>
       </div>
     </div>

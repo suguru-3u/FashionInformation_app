@@ -1,136 +1,21 @@
-<%# ランキングに必要な変数 %>
-  <% rank = 0 %>
+<div class="mt-5 pt-5 pb-5 mb-5 container">
+  <!-- flash_messageを表示 -->
+  <%= render '/layouts/flash_message' %>
 
-<div class="pt-5 pb-5 mt-5 mb-5 container">
   <h2 class = 'text-center mt-3 mb-3'>お悩み一覧</h2>
   <p class = 'text-center'>この検索バーからは現在投稿されているお悩みを探すことができます。</p>
 
   <!-- 検索フォーム -->
-  <div class='text-center mb-5'>
-    <div class="row justify-content-center ">
-      <div>
-        <%= form_with(url: users_users_posts_path, local: true, method: :get, class: "search-form") do |f| %>
-        <%= f.text_field :name, placeholder: "検索", class: "search-inputa form-control",id: 'search-input', autocomplete:'off' %>
-      </div>
-      <div>
-        <%= f.submit :search,class: 'btn btn-info ml-3 '%>
-      </div>
-      <% end %>
-    </div>
-    <div class="result">
-      <ul>
-        <!-- この中にインクリメンタルサーチの結果が表示される -->
-      </ul>
-    </div>
-  </div>
-
+  <%= render partial: "search_post" %>
 
   <div class="row">
     <div class="col-lg-3 order-lg-1">
-      <h2 class = "mb-3 mt-3 ">お悩み投稿</h2>
-      <%= form_with(model:@post,url: users_posts_path, method: :post) do |f| %>
-
-      <!-- エラーメッセージ表示-->
-      <% if @post.errors.any? %>
-      <h3><%= @post.errors.count %>件のエラーが発生</h3>
-      <ul>
-        <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-      <% end %>
-
-      <!-- ユーザー情報表示-->
-        <div >
-          <%= f.label :'タイトル' %><br>
-          <%= f.text_field :title,class:'form-control',id:'post_title' %>
-        </div>
-
-        <div class="mt-4">
-          <%= f.label :'画像' %><br/>
-          <%= f.attachment_field :post_image,id:'post_image' %>
-        </div>
-
-        <div class="mt-4 ">
-          <%= f.label :'本文' %><br/>
-          <%= f.text_area :post_body,class:'form-control',id:'post_body' %>
-        </div>
-
-      <div class="mt-4">
-        <%= f.submit "投稿する",class: 'btn btn-info post_submit'%>
-      </div>
-
-      <% end %>
+      <%# 投稿フォーム %>
+      <%= render partial: "form_post", locals: { post: @post }%>
     </div>
 
     <div class="col-lg-9 wrap order-lg-2">
-      <ul id="tab-menu-post" class="clearfix">
-        <li><a href="#tab1" class="active">お悩み一覧</a></li>
-        <li><a href="#tab2" class="">Good コメントランキング</a></li>
-      </ul>
-
-      <div id="tab-contents" class="clearfix">
-        <div id="tab1" class="tab">
-          <div class="row" id='post_card'>
-           <% @posts.each do |post| %>
-            <div class="col-lg-4 mb-3">
-              <div class="card">
-               <%= attachment_image_tag(post,:post_image, fallback: "no_image.jpg", size:'300x350' ,class:"card-img-top") %>
-                 <div class="card-body">
-                  <%= post.title %>
-                  <p class = 'class='card-text''>
-                    <%= post.created_at.to_s(:datetime_jp) %><br>
-                    <%= "コメント数 : #{post.comments.count}" %><br>
-                    <%= link_to 'お悩みを解決する',users_post_path(post),class: 'btn btn-outline-dark'%><br>
-                    <% if post.favorites_user(current_user.id, post.id) %>
-                     <%= link_to 'ブックマーク解除',users_post_favorites_path(post),method: :delete,class: 'btn btn-outline-danger' %><br>
-                    <% else %>
-                     <%= link_to 'ブックマーク',users_post_favorites_path(post),method: :post,class: 'btn btn-outline-dark' %><br>
-                    <% end %>
-                    <% if post.user_id == current_user.id %>
-                     <%= link_to '編集',edit_users_post_path(post),class: 'btn btn-outline-success' %>
-                     <%= link_to '削除',users_post_path(post),method: :delete, data: {confirm: "削除しますか？"},class: 'btn btn-outline-danger' %>
-                    <% end %>
-                  </p>
-                 </div>
-              </div>
-            </div>
-            <% end %>
-          </div>
-          <div class='mb-5'>
-            <%= paginate @posts %>
-          </div>
-        </div>
-        <div id="tab2" class="tab">
-          <div class="row" id='post_card'>
-              <p>
-                この一覧はお悩みに対して良いコメントをした方のランキングです。
-                さあ、お悩みを解決してください!
-              </p>
-            <% @users.each do |users| %>
-            <table class = "table">
-              <thead>
-                <tr>
-                  <th>順位</th><th>ユーザー名</th><th>Good コメント数</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <%= rank += 1 %>
-                  </td>
-                  <td>
-                    <%= users.name %>
-                  </td>
-                  <td>
-                    <%= users.answer_point %>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <% end %>
-          </div>
-        </div>
-      </div>
+      <%= render partial: "posts_index", locals: { posts: @posts, users: @users } %>
+    </div>
   </div>
 </div>

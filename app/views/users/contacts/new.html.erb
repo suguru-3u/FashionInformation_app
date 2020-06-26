@@ -9,14 +9,7 @@
 		<%= form_for(@contact,url: users_contacts_path, method: :post) do |f| %>
 
 		<!-- エラーメッセージ表示-->
-		<% if @contact.errors.any? %>
-		<h3><%= @contact.errors.count %>件のエラーが発生</h3><!--エラーメッセ-->
-		<ul>
-			<% @contact.errors.full_messages.each do |message| %>
-			<li><%= message %></li>
-			<% end %>
-		</ul>
-		<% end %>
+		<%= render partial: "users/shared/error", locals: { user: @contact }%>
 
 		<!-- ユーザー情報表示-->
 		<div class="mt-4">

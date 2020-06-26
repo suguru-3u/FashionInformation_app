@@ -18,19 +18,10 @@
       <% end %>
     </header>
 
-      <%= yield %>
-    
+    <%= yield %>
 
     <footer class="footer mt-auto py-3 navbar-dark bg-dark fixed-bottom">
-      <div class="container text-center">
-        <%= link_to 'https://twitter.com/', target: :_blank  do  %>
-          <i class="fa fa-twitter text-secondary mr-5">ツイッター</i>
-        <% end %>
-        <%= link_to 'https://www.instagram.com/', target: :_blank  do  %>
-          <i class="fab fa-instagram text-secondary mr-5">インスタグラム</i>
-        <% end %>
-        <span class="text-secondary" >©oohira suguru</span>
-      </div>
+      <%= render '/layouts/footer' %>
     </footer>
 
   </body>

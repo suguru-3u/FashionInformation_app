@@ -105,9 +105,18 @@ gem 'kaminari'
 # フォント
 gem 'font-awesome-rails'
 
-# 本番環境のdb
+# テスト
+group :development, :test do
+  gem 'capybara', '>= 2.15'
+   gem 'rspec-rails'
+   gem "factory_bot_rails"
+   gem 'faker'
+end
+
+# 本番環境
 group :production do
   gem 'mysql2'
+  gem 'aws-ses'
 end
 
 # 開発環境のdb

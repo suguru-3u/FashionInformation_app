@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container mb-5 pb-5">
   <h2 class ='text-center mt-3 mb-3'>My Page</h2>
   <div class="row pt-3 justify-content-between">
-    <div class="col-lg-4 pb-5">
+    <div class="col-lg-6 pb-5">
       <div class="card">
         <%= image_tag 'hannah-morgan-ycVFts5Ma4s-unsplash.jpg',class: 'card-img-top'%>
         <div class="card-body">
@@ -14,25 +14,41 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 pb-5">
+    <div class="col-lg-6 pb-5">
       <div class="card ">
         <%= image_tag 'burgess-milner-OYYE4g-I5ZQ-unsplash.jpg',class: 'card-img-top'%>
         <div class="card-body">
           <h3 class='card-title'>質問情報一覧</h3>
           <p class='card-text'>
-            <%= "現在のお悩み数は#{@posts}です" %><br><br>
+            <%= "現在のお悩み数は#{@posts_solution}です" %><br>
+            <%= "合計お悩み数は#{@posts.count}です" %><br>
             <%= link_to '質問情報一覧',admins_posts_path,class: 'mt-3 btn btn-primary' %>
           </p>
         </div>
       </div>
     </div>
-    <div class="col-lg-4 pb-5">
+   </div>
+  <div class="row pt-3 justify-content-between">
+    <div class="col-lg-6 pb-5">
+      <div class="card">
+        <%= image_tag 'vadim-sherbakov-tCICLJ5ktBE-unsplash.jpg',class: 'card-img-top'%>
+        <div class="card-body">
+          <h3 class='card-title'>お知らせ一覧</h3>
+          <p class='card-text'>
+            <%= "投稿したお知らせ数は#{@notice.count}です" %><br><br>
+            <%= link_to 'お知らせ情報',admins_notices_path,class: 'mt-3 btn btn-success' %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 pb-5">
       <div class="card">
         <%= image_tag 'umit-bulut-qbTC7ZwJB64-unsplash.jpg',class: 'card-img-top'%>
         <div class="card-body">
           <h3 class='card-title'>お問い合わせ一覧</h3>
           <p class='card-text'>
-            <%= "現在のお問い合わせ数は#{@contacts}です" %><br><br>
+            <%= "解決していないお問い合わせ数は#{@contacts_solution}です" %><br>
+            <%= "合計お問い合わせ数は#{@contacts.count}です" %><br>
             <%= link_to 'お問い合わせ情報',admins_contacts_path,class: 'mt-3 btn btn-success' %>
           </p>
         </div>

@@ -24,6 +24,13 @@ class User < ApplicationRecord
   # enum設定
   enum sex_status: {neither: 0, men: 1, women: 2}
 
+  # 最近のお悩み情報の取得の方法
+  scope :recent, -> { order(created_at: "DESC") }
+
+  # post情報取得scope
+  scope :recent_post, -> { order(answer_point: "DESC").limit(3) }
+
+
   # GoogleAPIメゾット
   protected
   def self.find_for_google(auth)
