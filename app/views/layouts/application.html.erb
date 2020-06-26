@@ -14,7 +14,7 @@
       <% if admin_signed_in? %>
         <%= render '/layouts/navbar_admin' %>
       <% else %>
-        <%= render partial: "navbar_user" %>
+        <%= render partial: "layouts/navbar_user" %>
       <% end %>
     </header>
 
