@@ -1,5 +1,5 @@
 class NotificationMailer < ApplicationMailer
-  default from: 'no-replay@gmail.com', charset: 'ISO-2022-JP'
+  default from: 'fashioninformation <noreply@my-domain.com>', charset: 'ISO-2022-JP'
 
   def complete_mail(user)
     @user = user

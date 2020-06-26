@@ -48,7 +48,7 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
-  
+
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :debug
@@ -92,10 +92,16 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :ses
+
   ActionMailer::Base.add_delivery_method :ses,
                                        AWS::SES::Base,
                                        access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                                        secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
                                        server: 'email.us-west-2.amazonaws.com'
+
+
 
 end
