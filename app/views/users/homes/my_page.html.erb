@@ -1,0 +1,62 @@
+<div class="p-5 my-page">
+  <div class="container">
+    <div class="row pt-5">
+      <div class="col-lg-4 mb-5">
+        <div class = " my-page-box p-5">
+          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">お悩み質問をする</h3>
+          <div class="my-page-content">
+            <p>ここではファッションに関するお悩みや疑問の質問を行うことができます。</p>
+            <%= link_to 'こちらをクリック',users_posts_path,class: 'my-page-link btn btn-outline-secondary ' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-5">
+        <div class = "my-page-box p-5">
+          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">Youtube動画検索</h3>
+          <div class="my-page-content">
+            <p>ファッション系Youtuberから情報をGETしちゃおう!</p>
+            <%= link_to 'こちらをクリック',users_youtube_index_path,class: 'my-page-link btn btn-outline-secondary' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-5">
+        <div class = "my-page-box p-5">
+          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">Instagram画像検索</h3>
+          <div class="my-page-content">
+            <p>Instagramから流行りのコーデを取得しちゃおう!</p>
+            <%= link_to 'こちらをクリック',users_posts_path,class: 'my-page-link btn btn-outline-secondary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row pb-5">
+      <div class="col-lg-4 mb-5">
+        <div class = "my-page-box p-5">
+          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">ユーザー情報</h3>
+          <div class="my-page-content">
+            <p>ここではユーザー情報の確認編集を行うことができます。</p>
+            <%= link_to 'こちらをクリック',users_users_path,class: 'my-page-link btn btn-outline-secondary' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-5">
+        <div class = "my-page-box p-5">
+          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">お知らせ</h3>
+          <div class="my-page-content">
+            <p>運営からお知らせが届くことがあります.........たまにはチェックしてね</p>
+            <%= link_to 'こちらをクリック',users_notices_path,class: 'my-page-link btn btn-outline-secondary' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-5">
+        <div class = "my-page-box p-5">
+          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">お問い合わせ</h3>
+          <div class="my-page-content">
+            <p>運営にご意見がありましたらこちらまで</p>
+            <%= link_to 'こちらをクリック',new_users_contact_path,class: 'my-page-link btn btn-outline-secondary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container mt-5 pt-5">
+  <h2 class = 'text-center mt-3 mb-3'>お知らせ一覧</h2>
+  <p class = 'text-center'>このページでは運営からのお知らせを確認することができます！</p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>タイトル</th><th></th>
+      </tr>
+    </thead>
+    <% @notices.each do |notices| %>
+    <tbody>
+      <tr>
+        <td><%= notices.announce_title %></td>
+        <td><%= link_to '詳細',users_notice_path(notices),class: 'btn btn-info' %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

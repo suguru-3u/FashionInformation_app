@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>メモ詳細</h2>
+  <%= form_for(@note,url:users_note_path , method: :PATCH) do |f| %>
+
+  <!-- エラーメッセージ表示-->
+  <% if @note.errors.any? %>
+  <h3><%= @note.errors.count %>件のエラーが発生</h3>
+  <ul>
+    <% @note.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <!-- ユーザー情報表示-->
+  <div class="row">
+    <div class="col">
+      <%= f.label :'タイトル' %><br>
+      <%= f.text_field :note_title,class:'form-control' %>
+    </div>
+
+    <div class="col">
+      <%= f.label :'本文' %><br/>
+      <%= f.text_area :note_body,class:'form-control' %>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <%= f.label :'画像' %><br/>
+    <%= f.attachment_field :post_image %>
+  </div>
+
+  <div class="mt-4">
+    <%= f.submit "保存",class: 'btn btn-info mr-3'%>
+    <%= link_to '戻る',users_notes_path,class: 'btn btn-info' %>
+  </div>
+
+  <% end %>
+</div>

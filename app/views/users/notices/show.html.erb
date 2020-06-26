@@ -1,0 +1,23 @@
+<div class="container mt-5 pt-5">
+  <h2 class ='text-center mt-3 mb-3'>詳細</h2>
+  <div class="card p-5">
+    <%= form_for(@notice,url: admins_notice_path, method: :PATCH) do |f| %>
+
+    <div class="field">
+    	<%= f.label :'タイトル' %><br>
+    	<%= f.text_field :announce_title,class:'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :'本文' %><br/>
+      <%= f.text_area :announce_body,class:'form-control' %>
+    </div>
+
+    <div class="actions">
+      <%= link_to '戻る',users_notices_path,class: 'btn btn-outline-secondary mt-3' %>
+    </div>
+
+    <% end %>
+
+  </div>
+</div>
