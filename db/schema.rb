@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_001912) do
+ActiveRecord::Schema.define(version: 2020_06_26_051354) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2020_06_20_001912) do
     t.string "provider"
     t.string "uid"
     t.string "token"
-    t.string "meta"
+    t.text "meta"
     t.integer "sign_in_count"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
