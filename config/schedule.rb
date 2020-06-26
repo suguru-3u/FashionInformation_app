@@ -12,9 +12,9 @@ env :PATH, ENV['PATH']
 set :output, 'log/cron.log'
 
 # ジョブの実行環境の指定
-rails_env = ENV['RAILS_ENV'] || :development
+rails_env = ENV['RAILS_ENV'] || :production
 
-# cronを実行する環境変数をセット
+
 set :environment, rails_env
 
 #
