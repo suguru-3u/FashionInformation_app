@@ -13,8 +13,14 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap";
+
+@import "bootstrap";
+@import "font-awesome";
 
 .login{
   height: 700px;
+}
+
+body{
+  background-color: #F5F5F5;
 }

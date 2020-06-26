@@ -75,7 +75,7 @@ gem 'omniauth-google-oauth2'
 # 環境変数
 gem 'dotenv-rails'
 
-# Youtube API
+# Google API
 gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
 
 # エラー文の日本語化
@@ -90,7 +90,36 @@ gem 'jquery-rails'
 # bootstrapアイコン
 gem "font-awesome-rails"
 
-# 本番環境のdb
+# メールでの日本語対応
+gem 'mail-iso-2022-jp'
+
+# 定期実行
+gem 'whenever', require: false
+
+# デバック
+gem 'byebug'
+
+# ページネーション機能
+gem 'kaminari'
+
+# フォント
+gem 'font-awesome-rails'
+
+# テスト
+group :development, :test do
+  gem 'capybara', '>= 2.15'
+   gem 'rspec-rails'
+   gem "factory_bot_rails"
+   gem 'faker'
+end
+
+# 本番環境
 group :production do
   gem 'mysql2'
+  gem 'aws-ses'
+end
+
+# 開発環境のdb
+group :development do
+  gem 'letter_opener'
 end

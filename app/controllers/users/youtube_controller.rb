@@ -9,7 +9,7 @@ class Users::YoutubeController < ApplicationController
     opt = {
       q: keyword,
       type: 'video',
-      max_results: 2,
+      max_results: 4,
       order: :date,
       page_token: next_page_token,
       published_after: after.iso8601,
@@ -19,13 +19,15 @@ class Users::YoutubeController < ApplicationController
   end
 
   def index
-    @youtube_data = find_videos('黒スキニー')
+    if params[:keyword]
+      @youtube_data = find_videos(params[:keyword])
+    end
     @youtube = Youtube.new
   end
 
   def create
     @youtube = current_user.youtubes.new(youtube_params)
-    @youtube.save ? redirect_to(users_users_path) : render(:index)
+    @youtube.save ? redirect_to(users_users_youtube_path) : render(:index)
   end
 
   def destroy
@@ -34,7 +36,7 @@ class Users::YoutubeController < ApplicationController
   end
 
   def favorite
-    @youtubes = current_user.youtubes
+    @youtubes = current_user.youtubes.order(created_at: "DESC").page(params[:page]).per(15)
   end
 
   private

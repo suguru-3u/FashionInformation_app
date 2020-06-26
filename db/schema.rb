@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_120633) do
+ActiveRecord::Schema.define(version: 2020_06_20_001912) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2020_06_10_120633) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_answers_on_comment_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -41,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_06_10_120633) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "solution", default: false
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -53,6 +63,28 @@ ActiveRecord::Schema.define(version: 2020_06_10_120633) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "genrne_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "note_title"
+    t.text "note_body"
+    t.string "post_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.string "announce_title"
+    t.text "announce_body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "post_body"
@@ -60,6 +92,7 @@ ActiveRecord::Schema.define(version: 2020_06_10_120633) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.boolean "solution", default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,8 +104,6 @@ ActiveRecord::Schema.define(version: 2020_06_10_120633) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "sex_status"
-    t.integer "age"
     t.string "provider"
     t.string "uid"
     t.string "token"
@@ -82,6 +113,12 @@ ActiveRecord::Schema.define(version: 2020_06_10_120633) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.boolean "admin", default: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "answer_point", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

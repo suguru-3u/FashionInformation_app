@@ -1,22 +1,70 @@
-<h2>コメント一覧</h2>
-
-<div class="comment-wrapper border-top mb-10">
-  <p class="mt-5">コメント一覧</p>
-
-  <% @comments.each do |f| %>
-    <div>
-      <%= f.content %>
-      <br/>
-      <% if f.user_id == current_user.id %>
-        <%= link_to '削除',users_post_comment_path(@post),method: :delete %>
-      <% end %>
+<div class="container mt-5 pt-5 pb-5 mb-5">
+  <h2 class = 'text-center mt-3 mb-3'>コメント</h2>
+  <div class="row">
+    <div class="col-lg-3 mb-5">
+      <div class="card">
+        <%= attachment_image_tag(@post,:post_image, fallback: "no_image.jpg",size:'300x350',class:"card-img-top") %>
+        <div class="card-body">
+          <h3>質問内容</h3>
+          <div class="card-text">
+            <p>
+              質問者<br>
+              <%= @post.user.name %>
+            </p>
+            <p>
+              タイトル<br>
+              <%= @post.title %>
+            </p>
+            <p>
+              本文<br>
+              <%= @post.post_body %>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <% if user_signed_in? %>
-    <%= form_for([@post, @comment] ,url:users_post_comments_path(@post),method: :post) do |f| %>
-      <%= f.text_area :content, class: "form-control", rows: 5 %>
-      <%= f.submit "投稿", class: "btn btn-primary mt-5" %>
-    <% end %>
-  <% end %>
+    <div class="col-lg-9">
+      <h5>コメント一覧</h5>
+      <% @comments.each do |comments| %>
+      <div class="border p-3 mb-3 bg-white">
+        <div class="comment">
+          <%= "#{comments.user.name}さんからのコメント" %><br>
+          <%= comments.content %>
+        </div>
+        <div>
+          <%# コメント削除 %>
+          <% if comments.user_id == current_user.id %>
+            <%= link_to '削除',users_post_comment_path(@post),method: :delete, data: {confirm: "削除しますか？"},class: 'btn btn-outline-danger mt-3' %>
+          <% end %>
+          <%# ベストアンサー機能 %>
+          <% if current_user.id == @post.user_id %>
+            <% if current_user.id != comments.user_id %>
+              <% if comments.answers_user(comments.user_id,comments.id) %>
+                <%= link_to 'bad Answer',users_post_comment_answers_path(@post,comments),method: :delete %>
+              <% else %>
+                <%= link_to 'Good Answer',users_post_comment_answers_path(@post,comments),method: :post %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        </div>
+        <% end %>
+        <div class='mb-5'>
+          <%= paginate @comments %>
+        </div>
+        <h5>コメント投稿</h5>
+          <%= form_for([@post, @comment] ,url:users_post_comments_path(@post),method: :post) do |f| %>
+            <%= f.text_area :content, class: "form-control", rows: 5 %>
+            <%= f.submit "投稿", class: "btn btn-info mt-3" %>
+          <% end %>
+          <% if current_user.id == @post.user_id %>
+            <% if @post.solution == false %>
+              <% @post.solution = true %>
+              <%= form_for(@post, url: users_post_path(@post), method: :PATCH) do |f| %>
+                <%= f.hidden_field :solution, :value => @post.solution %>
+                <%= f.submit "お悩み解決",class: 'btn btn-success mt-3' %>
+              <% end %>
+            <% end %>
+          <% end %>
+  </div>
 </div>

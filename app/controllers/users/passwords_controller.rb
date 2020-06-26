@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
-  skip_before_action :authenticate_user_from_token!, only: [:create,:update]
+  # skip_before_action :authenticate_user_from_token!, only: [:create,:update]
 
   def create
     user = User.find_by(email: create_params[:email])
@@ -19,7 +19,7 @@ class Users::PasswordsController < Devise::PasswordsController
   def create_params
     params.require(:user).permit(:email)
   end
-end
+
 
   # GET /resource/password/new
   # def new

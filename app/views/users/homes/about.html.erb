@@ -21,14 +21,14 @@
     このFashionInformation_appはファッションお悩み解消アプリです。<br>
     FashionInformation_appではファッションのお悩みの投稿しユーザー同士で解消する他<br>
     検索バーからInstagram,Youtubeのファッション情報を取得しお悩みの解決を手助けしてくれます。<br>
-    さあ、Task_appでTaskを管理して仕事の効率化、ミスをなくしていきましょう！
+    さあ、FashionInformation_appでファッションの悩み事を解消していきましょう！
   </p>
 </div>
-<div class='top-Task pb-5'>
+<div class='top-Task pb-5 bg-white'>
   <h2 class="text-center pt-5 pb-5">FashionInformation_appでできること</h2>
   <div class="container-fluid">
     <div class="row ">
-      <div class="col-6 h4 mt-5">
+      <div class="col-lg-6 h4 mt-5">
         <ul>
           <li class = 'mb-3'>
             お悩みをアプリ内で投稿することができる
@@ -44,19 +44,19 @@
           </li>
         </ul>
       </div>
-      <div class="col-6 ">
+      <div class="col-lg-6">
           <%= image_tag 'bruce-mars-AndE50aaHn4-unsplash.jpg',class: "about-image w-100 rounded " %>
       </div>
     </div>
   </div>
 </div>
-<div class="container-fluid top-Task pb-5">
+<div class="container-fluid top-Task pb-5 bg-white">
   <h2 class="text-center mb-5">FashionInformation_appのご利用に向いている方</h2>
   <div class="row">
-    <div class="col-6">
+    <div class="col-lg-6">
       <%= image_tag 'umit-bulut-qbTC7ZwJB64-unsplash.jpg',class: "about-image w-100 rounded" %>
     </div>
-    <div class="col-xs-6 h4 mt-5">
+    <div class="col-lg-6 h4 mt-5">
       <ul>
         <li class = 'mb-3'>
           毎日のコーディネートで悩んでいる方
@@ -74,13 +74,13 @@
 <div>
 <div class="container top-m-message text-center mb-5 pb-5">
   <h2 class=" mt-5 mb-5">さあ、FashionInformation_appを利用してみよう!</h2>
-  <div class="row ">
+  <div class="row">
     <div class="col-6">
-      <p class='h4'>初めて利用する方はこちらから</p>
+      <p class='h4'>初めて利用する方</p>
         <%= link_to '新規会員登録', new_user_registration_path,class: 'btn btn-success mr-3' %>
     </div>
     <div class="col-6">
-      <p class='h4'>利用したことがある方はこちらから</p>
+      <p class='h4'>利用したことがある方</p>
         <%= link_to 'ログイン', new_user_session_path,class: 'btn btn-primary' %>
     </div>
   </div>

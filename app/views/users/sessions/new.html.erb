@@ -1,4 +1,4 @@
-<div class="container login">
+<div class="container login pt-5">
   <h2 class = 'mt-5 mb-3'>ログインページ</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -20,7 +20,7 @@
   <% end %>
 
   <div class="mt-4">
-    <%= f.submit "ログイン",class: 'btn btn-outline-dark mb-3' %>
+    <%= f.submit "ログイン",class: 'btn btn-outline-primary mb-3' %>
   </div>
   <% end %>
 

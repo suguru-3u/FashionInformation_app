@@ -1,48 +1,58 @@
-<div class="container">
-  <h2 class = "mb-3 mt-3 text-center">マイページ</h2>
-  <div class="row mb-5">
-    <div class="col-4">
-      <div class = "border p-5">
-        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">洋服の質問をする</h3>
-        <p>ここではファッションに関するお悩みや疑問の質問を行うことができます。</p>
-        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary ' %>
+<div class="container mt-5 pt-5 mb-5 pb-5">
+  <!-- flash_messageを表示 -->
+  <%= render '/layouts/flash_message' %>
+  <h2 class = 'text-center mb-4'>マイページ</h2>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="card p-3">
+        <h5 class = "mb-3 mt-3 text-center">ユーザー情報</h5>
+        <%= form_for(@user,url: users_users_path, method: :PATCH) do |f| %>
+
+        <!-- エラーメッセージ表示-->
+        <%= render partial: "users/shared/error", locals: { user: @user }%>
+
+        <!-- ユーザー情報表示-->
+        <div>
+          <%= f.label :'名前' %><br>
+          <%= f.text_field :name,class:'form-control',id:'post_title' %>
+        </div>
+
+        <div class="mt-4 ">
+          <%= f.label :'メールアドレス' %><br/>
+          <%= f.text_area :email,class:'form-control',id:'post_body' %>
+        </div>
+
+        <div class="mt-4">
+          <%= f.submit "変更する",class: 'btn btn-info post_submit mb-5'%>
+        </div>
+
+        <% end %>
       </div>
     </div>
-    <div class="col-4">
-      <div class = "border p-5">
-        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">Youtube動画検索</h3>
-        <p>ファッション系Youtuberから情報を<br>GETしちゃおう!</p>
-        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary' %>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class = "border p-5">
-        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">Instagram画像検索</h3>
-        <p>Instagramから流行りのコーデを取得しちゃおう!</p>
-        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary' %>
-      </div>
-    </div>
-  </div>
-  <div class="row mb-5">
-    <div class="col-4">
-      <div class = "border p-5">
-        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">洋服の情報の投稿</h3>
-        <p>ここではファッションに関する情報を発信することができます！。</p>
-        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary' %>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class = "border p-5">
-        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">お知らせ</h3>
-        <p>運営からお知らせが届くことがあります.........たまにはチェックしてね</p>
-        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary' %>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class = "border p-5">
-        <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">お問い合わせ</h3>
-        <p>運営にご意見がありましたらこちらまで</p>
-        <%= link_to 'こちらをクリック',users_posts_path,class: 'text-secondary' %>
+
+    <div class="col-lg-9 wrap">
+      <ul id="tab-menu" class="clearfix">
+        <li><a href="#tab1" class="active">投稿したお悩み</a></li>
+        <li><a href="#tab2" class="">ブックマーク</a></li>
+        <li><a href="#tab3" class="">コメント</a></li>
+        <li><a href="#tab4" class="">解決したお悩み</a></li>
+      </ul>
+
+      <div id="tab-contents" class="clearfix">
+        <div id="tab1" class="tab">
+          <%= render partial: "user_post", locals: { posts: @posts } %>
+        </div>
+
+        <div id="tab2" class="tab">
+          <%= render partial: "user_post", locals: { posts: @current_user_favorites } %>
+        </div>
+        <div id="tab3" class="tab">
+          <%= render partial: "user_post", locals: { posts: @current_user_comments } %>
+        </div>
+        <div id="tab4" class="tab">
+          <%= render partial: "user_post", locals: { posts: @solution_posts } %>
+        </div>
       </div>
     </div>
   </div>

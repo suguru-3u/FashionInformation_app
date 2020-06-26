@@ -10,8 +10,12 @@ class User < ApplicationRecord
   has_many :youtubes, dependent: :destroy
   has_many :contacts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :comments_post, through: :comments, source: :post
   has_many :favorites, dependent: :destroy
   has_many :favorites_post, through: :favorites, source: :post
+  has_many :notes, dependent: :destroy
+  has_many :answers, dependent: :destroy
+
 
   # バリデーション
   validates :name, presence: true
@@ -19,6 +23,13 @@ class User < ApplicationRecord
 
   # enum設定
   enum sex_status: {neither: 0, men: 1, women: 2}
+
+  # 最近のお悩み情報の取得の方法
+  scope :recent, -> { order(created_at: "DESC") }
+
+  # post情報取得scope
+  scope :recent_post, -> { order(answer_point: "DESC").limit(3) }
+
 
   # GoogleAPIメゾット
   protected

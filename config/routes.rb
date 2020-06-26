@@ -1,14 +1,8 @@
 Rails.application.routes.draw do
 
-  namespace :users do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-    get 'posts/new'
-  end
-
   root to: 'users/homes#top'
-  get 'homes/about' => 'homes#about'
+
+
 
 # デバイスのURL
   devise_for :users, controllers: {
@@ -31,14 +25,18 @@ Rails.application.routes.draw do
 # ユーザー側のURL
   namespace :users do
     resource :passwords, only: [:create,:update]
-    get 'homes/top' => 'homes#top'
     get 'homes/about' => 'homes#about'
+    get 'homes/my_page' => 'homes#my_page'
     resource :users, only:[:show,:edit,:update]
     resources :contacts, only: [:new,:create]
     resources :youtube, only: [:index,:create,:destroy]
+    resources :notes, only: [:index,:edit,:create,:destroy,:update]
+    resources :notices, only: [:index,:show]
     get '/users/youtube' => '/users/youtube#favorite'
     resources :posts do
-      resources :comments, only: [:create,:destroy]
+      resources :comments, only: [:create,:destroy] do
+        resource :answers, only: [:create, :destroy]
+      end
       resource :favorites, only: [:create, :destroy]
     end
     get '/users/posts' => '/users/posts#search'
@@ -51,7 +49,7 @@ Rails.application.routes.draw do
     post 'admins/sign_in' => 'admins/sessions#create', as: 'admin_session'
 
     authenticated :admin do
-      delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
+      delete '/admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
       get 'admins/password/edit' => 'admins/passwords#edit', as: 'edit_admin_password'
       patch 'admins/password' => 'admins/passwords#update', as: 'admin_password'
       get 'admins/passwords/new' => 'admins/password#new', as: 'admin_forgot_password'
@@ -60,6 +58,10 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resource :admins, only:[:show,:edit]
+    resources :users, only:[:index,:edit,:destroy,:update]
+    resources :posts, only:[:index,:edit,:destroy,:update]
+    resources :contacts, only:[:index,:show,:destroy,:update]
+    resources :notices, only: [:index,:edit,:update,:destroy,:create]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
