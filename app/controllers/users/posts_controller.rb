@@ -55,10 +55,10 @@ class Users::PostsController < ApplicationController
      if params[:name].empty?
        @posts = Post.none.page(params[:page]).per(9)
      else
-       @posts = Post.where('title LIKE(?)', "%#{params[:name]}%").page(params[:page]).per(9)
+       @posts = Post.where('title LIKE(?)', "%#{params[:name]}%").recent.page(params[:page]).per(9)
      end
    else
-      @posts = Post.all.page(params[:page]).per(9)
+      @posts = Post.recent.page(params[:page]).per(9)
    end
 
    respond_to do |format|

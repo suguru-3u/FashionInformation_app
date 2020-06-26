@@ -2,7 +2,6 @@ class Users::UsersController < ApplicationController
   before_action :my_page_infomration, only:[:show,:update]
 
   def show
-    @user = User.new
     @solution_posts = Post.where(solution: false).recent.page(params[:page]).per(9)
   end
 
@@ -23,6 +22,7 @@ class Users::UsersController < ApplicationController
   end
 
   def my_page_infomration
+    @user = current_user
     @posts = current_user.posts.recent.page(params[:page]).per(9)
     @current_user_favorites = current_user.favorites_post.recent.page(params[:page]).per(9)
     @current_user_comments = current_user.comments_post.recent.page(params[:page]).per(9)
