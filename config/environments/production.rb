@@ -92,16 +92,20 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # メール送信時のエラー文の作成
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.delivery_method = :ses
-
-  ActionMailer::Base.add_delivery_method :ses,
-                                       AWS::SES::Base,
-                                       access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-                                       secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-                                       server: 'email.us-west-2.amazonaws.com'
-
+  # メールの機能設定
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    address: 'smtp.gmail.com',
+    domain: 'gmail.com',
+    port: 587,
+    user_name: ENV['Gmail_name'] ,
+    password: ENV['Gmail_password'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
 
 end
