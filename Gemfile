@@ -105,6 +105,8 @@ gem 'kaminari'
 # フォント
 gem 'font-awesome-rails'
 
+gem 'listen', '>= 3.0.5', '< 3.2'
+
 # テスト
 group :development, :test do
   gem 'capybara', '>= 2.15'
