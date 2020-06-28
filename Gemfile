@@ -122,4 +122,6 @@ end
 # 開発環境のdb
 group :development do
   gem 'letter_opener'
+  gem 'listen'
+
 end
