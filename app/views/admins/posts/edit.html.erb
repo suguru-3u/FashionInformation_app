@@ -1,0 +1,56 @@
+<div class="container pt-3 mt-5">
+  <h2 class = 'text-center mt-3 mb-3'>コメント</h2>
+  <div class="row">
+    <div class="col-lg-3 mb-5">
+      <div class="card">
+        <%= attachment_image_tag(@post,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+        <div class="card-body">
+          <h3>質問内容</h3>
+          <div class="card-text">
+            <p>
+              質問者<br>
+              <%= @post.user.name %>
+            </p>
+            <p>
+              タイトル<br>
+              <%= @post.title %>
+            </p>
+            <p>
+              本文<br>
+              <%= @post.post_body %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <h5>コメント一覧</h5>
+      <% @comments.each do |comments| %>
+      <div class="border p-3 mb-3">
+        <div class="comment">
+          <%= "#{comments.user.name}さんからのコメント" %><br>
+          <%= comments.content %>
+        </div>
+        <div>
+          <%# コメント削除 %>
+            <%= link_to '削除',users_post_comment_path(@post),method: :delete, data: {confirm: "削除しますか？"},class: 'btn btn-outline-danger mt-3' %>
+          <%# ベストアンサー機能 %>
+            <% if comments.answers_user(comments.user_id,comments.id) %>
+              <%= link_to 'bad Answer',users_post_comment_answers_path(@post,comments),method: :delete,class: 'btn btn-outline-danger mt-3 ml-3' %>
+            <% else %>
+              <%= link_to 'Good Answer',users_post_comment_answers_path(@post,comments),method: :post,class: 'btn btn-outline-success mt-3 ml-3' %>
+            <% end %>
+        </div>
+        </div>
+        <% end %>
+        <div class='mb-5'>
+          <%= paginate @comments %>
+        </div>
+        <h5>コメント投稿</h5>
+            <% @post.solution = true %>
+            <%= form_for(@post, url: users_post_path(@post), method: :PATCH) do |f| %>
+              <%= f.hidden_field :solution, :value => @post.solution %>
+            <%= f.submit "お悩み解決",class: 'btn btn-success mt-3' %>
+            <% end %>
+  </div>
+</div>
