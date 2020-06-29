@@ -2,8 +2,8 @@ class Admins::PostsController < ApplicationController
   before_action :post_information, only:[:edit,:update,:destroy]
 
   def index
-    @posts_solution = Post.where(solution: false).order(created_at: "DESC").page(params[:page]).per(20)
-    @posts = Post.all.order(created_at: "DESC").page(params[:page]).per(20)
+    @posts_solution = Post.where(solution: false).recent.page(params[:page]).per(20).search(params[:title])
+    @posts = Post.recent.page(params[:page]).per(20).search(params[:title])
   end
 
   def edit

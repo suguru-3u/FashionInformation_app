@@ -2,7 +2,7 @@ class Admins::NoticesController < ApplicationController
   before_action :note_information, only:[:edit,:update,:destroy]
 
   def index
-    @notices = Notice.all
+    @notices = Notice.recent.page(params[:page]).per(20).search(params[:announce_title])
     @notice = Notice.new
   end
 

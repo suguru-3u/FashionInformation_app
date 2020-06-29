@@ -1,5 +1,18 @@
 <div class ='container mt-5 pt-3'>
   <h2 class = 'text-center mt-3 mb-3'>お知らせ一覧</h2>
+  <!-- 検索フォーム -->
+  <div class='text-center mb-5'>
+    <div class="row justify-content-center ">
+      <div>
+        <%= form_tag(admins_notices_path,:method => 'get') do %>
+        <%= text_field_tag :announce_title %>
+      </div>
+      <div>
+        <%= submit_tag '検索',class: 'btn btn-info ml-3 '%>
+      </div>
+      <% end %>
+    </div>
+  </div>
   <h3 class = "mb-3 mt-3 ">お知らせ作成</h3>
     <div class = 'row'>
       <!-- お知らせ作成フォーム -->
@@ -57,6 +70,9 @@
           <% end %>
         </tbody>
       </table>
+      <div class='mb-5'>
+        <%= paginate @notices %>
+      </div>
     </div>
   </div>
 </div>

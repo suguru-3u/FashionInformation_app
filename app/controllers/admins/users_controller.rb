@@ -2,7 +2,7 @@ class Admins::UsersController < ApplicationController
   before_action :user_information, only:[:edit,:update,:destroy]
 
   def index
-    @users = User.order(created_at: "DESC")
+    @users = User.recent.page(params[:page]).per(20).search(params[:name])
   end
 
   def edit

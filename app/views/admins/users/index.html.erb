@@ -1,5 +1,18 @@
 <div class="container mt-5 pt-5">
   <h2 class ='text-center mt-3 mb-3'>ユーザー情報</h2>
+  <!-- 検索フォーム -->
+  <div class='text-center mb-5'>
+    <div class="row justify-content-center ">
+      <div>
+        <%= form_tag(admins_users_path,:method => 'get') do %>
+        <%= text_field_tag :name, params[:name]%>
+      </div>
+      <div>
+        <%= submit_tag '検索',class: 'btn btn-info ml-3 '%>
+      </div>
+      <% end %>
+    </div>
+  </div>
   <table class = 'table'>
     <thead>
       <tr>
@@ -19,4 +32,7 @@
       <% end %>
     </tbody>
   </table>
+  <div class='mb-5'>
+    <%= paginate @users %>
+  </div>
 </div>

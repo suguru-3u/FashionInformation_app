@@ -1,5 +1,18 @@
 <div class="container mt-5 pt-3 mb-5 pb-5">
   <h2 class ='text-center mt-3 mb-3'>お問い合わせ一覧</h2>
+  <!-- 検索フォーム -->
+  <div class='text-center mb-5'>
+    <div class="row justify-content-center ">
+      <div>
+        <%= form_tag(admins_contacts_path,:method => 'get') do %>
+        <%= text_field_tag :title %>
+      </div>
+      <div>
+        <%= submit_tag '検索',class: 'btn btn-info ml-3 '%>
+      </div>
+      <% end %>
+    </div>
+  </div>
   <div class="wrap">
     <ul id="tab-menu-post" class="clearfix">
       <li><a href="#tab1" class="active">解決していないお問い合わせ</a></li>
@@ -48,11 +61,6 @@
               <th><%= contacts.title %></th>
               <th><%= contacts.created_at.to_s(:datetime_jp) %></th>
               <th>
-                <% contacts.solution = true %>
-                <%= form_for(contacts, url: admins_contact_path(contacts), method: :PATCH) do |f| %>
-                  <%= f.hidden_field :solution, :value => contacts.solution %>
-                  <%= f.submit "解決",class: 'btn btn-outline-success mb-3' %>
-                <% end %>
                 <%= link_to '詳細',admins_contact_path(contacts),class: 'btn btn-outline-info mb-3'%><br>
                 <%= link_to '削除',admins_contact_path(contacts),method: :delete, data: {confirm: "削除しますか？"},class: 'btn btn-outline-danger'%>
               </th>

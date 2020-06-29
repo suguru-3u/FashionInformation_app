@@ -2,9 +2,8 @@ class Admins::ContactsController < ApplicationController
   before_action :post_information, only:[:show,:update,:destroy]
 
   def index
-    @contacts_solution = Contact.where(solution: false).order(created_at: "DESC").page(params[:page]).per(20)
-    @contacts = Contact.all.order(created_at: "DESC").page(params[:page]).per(20)
-    @contact = Contact.new
+    @contacts_solution = Contact.where(solution: false).recent.page(params[:page]).per(20).search(params[:title])
+    @contacts = Contact.recent.page(params[:page]).per(20).search(params[:title])
   end
 
   def show
