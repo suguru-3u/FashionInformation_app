@@ -3,18 +3,18 @@ class NotificationMailer < ApplicationMailer
 
   def complete_mail(user)
     @user = user
-    @url = "http://localhost:3000"
+    @url = "https://fashioninformation.net"
     mail(subject: "コメントを頂きました" ,to: @user.email)
   end
 
   def user_update(user)
-    @url = "http://localhost:3000"
+    @url = "https://fashioninformation.net"
     @user = user
     mail(subject: "登録情報の変更" ,to: @user.email)
   end
 
   def user_contact
-      @url = "http://localhost:3000"
+      @url = "https://fashioninformation.net"
       mail(subject: "お問い合わせがありました" ,to: ENV['Gmail_name'])
   end
 
@@ -25,13 +25,5 @@ class NotificationMailer < ApplicationMailer
     mail(subject: "ユーザー数の報告" ,to: ENV['Gmail_name'])
   end
 
-
-  def user_answer_point_count_rank
-    users = User.where("answer_point > ?", 0)
-    users.each do |user|
-      @user_email = user.email
-    end
-    mail(subject: "Good コメントランキングの報告" ,to: @user_email)
-  end
 
 end
