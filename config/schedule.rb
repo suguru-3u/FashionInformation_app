@@ -34,7 +34,7 @@ set :environment, rails_env
 
 
 # 3時間毎に実行するスケジューリング
-every 1.days, pm: '6:00 am' do
+every 1.days, pm: '15:00 am' do
   # Rails内のメソッド実行
   runner "NotificationMailer.user_count.deliver_now"
 end
