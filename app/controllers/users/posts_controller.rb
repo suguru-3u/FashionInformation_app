@@ -1,8 +1,8 @@
 class Users::PostsController < ApplicationController
-    before_action :post_get_id, only:[:show,:edit,:update,:destroy]
-    before_action :user_recent_post, only:[:index,:search,:create]
-    before_action :post_new, only:[:index,:search]
-    before_action :post_solution_search_false, only:[:index,:create]
+  before_action :post_get_id, only: [:show, :edit, :update, :destroy]
+  before_action :user_recent_post, only: [:index, :search, :create]
+  before_action :post_new, only: [:index, :search]
+  before_action :post_solution_search_false, only: [:index, :create]
 
   def index
   end
@@ -21,7 +21,6 @@ class Users::PostsController < ApplicationController
     end
   end
 
-
   def show
     @comments = @post.comments.page(params[:page]).per(9)
     @comment = Comment.new
@@ -29,7 +28,8 @@ class Users::PostsController < ApplicationController
 
   def update
     # 解決ボタンをクリックした場合
-    if @post.solution = params[:solution]
+    if params[:solution]
+      @post.solution = params[:solution]
       @post.update ? redirect_to(users_posts_path) : render(:show)
     end
     # お悩み内容を変更した場合
@@ -54,26 +54,25 @@ class Users::PostsController < ApplicationController
   end
 
   def search
-   if params[:name]
-     if params[:name].empty?
-       @posts = Post.none.page(params[:page]).per(9)
-     else
-       @posts = Post.where('title LIKE(?)', "%#{params[:name]}%").recent.page(params[:page]).per(9)
-     end
-   else
+    if params[:name]
+      if params[:name].empty?
+        @posts = Post.none.page(params[:page]).per(9)
+      else
+        @posts = Post.where('title LIKE(?)', "%#{params[:name]}%").recent.page(params[:page]).per(9)
+      end
+    else
       @posts = Post.recent.page(params[:page]).per(9)
-   end
-
-   respond_to do |format|
-    format.html
-    format.json
-   end
-
+    end
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   private
+
   def posts_params
-    params.require(:post).permit(:title,:post_body,:post_image,:solution)
+    params.require(:post).permit(:title, :post_body, :post_image, :solution)
   end
 
   def post_get_id
@@ -91,5 +90,4 @@ class Users::PostsController < ApplicationController
   def post_solution_search_false
     @posts = Post.where(solution: false).recent.page(params[:page]).per(9)
   end
-
 end

@@ -1,5 +1,4 @@
 class Notice < ApplicationRecord
-
   # バリデーション
   validates :announce_title, presence: true
   validates :announce_body, presence: true
@@ -12,5 +11,4 @@ class Notice < ApplicationRecord
     return Notice.all unless search
     Notice.where(['announce_title LIKE ?', "%#{search}%"])
   end
-
 end

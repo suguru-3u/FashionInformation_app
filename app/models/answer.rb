@@ -5,7 +5,6 @@ class Answer < ApplicationRecord
 
   # good_answerしているのかのチェックメゾット
   def answers_user(user_id, comment_id)
-      Answer.where(user_id: user_id, comment_id: comment_id).exists?
+    Answer.where(user_id: user_id, comment_id: comment_id).exists?
   end
-
 end

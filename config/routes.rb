@@ -2,11 +2,9 @@ Rails.application.routes.draw do
 
   root to: 'users/homes#top'
 
-
-
-# デバイスのURL
+  # デバイスのURL
   devise_for :users, controllers: {
-      omniauth_callbacks: "users/omniauth_callbacks"
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
 
   devise_scope :user do
@@ -22,20 +20,20 @@ Rails.application.routes.draw do
     get '/users/passwords/new' => 'users/passwords#new'
   end
 
-# ユーザー側のURL
+  # ユーザー側のURL
   namespace :users do
-    resource :passwords, only: [:create,:update]
+    resource :passwords, only: [:create, :update]
     get 'homes/about' => 'homes#about'
     get 'homes/my_page' => 'homes#my_page'
     get 'homes/guidance' => 'homes#guidance'
-    resource :users, only:[:show,:edit,:update]
-    resources :contacts, only: [:new,:create]
-    resources :youtube, only: [:index,:create,:destroy]
-    resources :notes, only: [:index,:edit,:create,:destroy,:update]
-    resources :notices, only: [:index,:show]
+    resource :users, only: [:show, :edit, :update]
+    resources :contacts, only: [:new, :create]
+    resources :youtube, only: [:index, :create, :destroy]
+    resources :notes, only: [:index, :edit, :create, :destroy, :update]
+    resources :notices, only: [:index, :show]
     get '/users/youtube' => '/users/youtube#favorite'
     resources :posts do
-      resources :comments, only: [:create,:destroy] do
+      resources :comments, only: [:create, :destroy] do
         resource :answers, only: [:create, :destroy]
       end
       resource :favorites, only: [:create, :destroy]
@@ -43,7 +41,7 @@ Rails.application.routes.draw do
     get '/users/posts' => '/users/posts#search'
   end
 
-# 管理者側のURL
+  # 管理者側のURL
   devise_for :admins, skip: :all
   devise_scope :admin do
     get 'admins/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
@@ -58,11 +56,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-    resource :admins, only:[:show,:edit]
-    resources :users, only:[:index,:edit,:destroy,:update]
-    resources :posts, only:[:index,:edit,:destroy,:update]
-    resources :contacts, only:[:index,:show,:destroy,:update]
-    resources :notices, only: [:index,:edit,:update,:destroy,:create]
+    resource :admins, only: [:show, :edit]
+    resources :users, only: [:index, :edit, :destroy, :update]
+    resources :posts, only: [:index, :edit, :destroy, :update]
+    resources :contacts, only: [:index, :show, :destroy, :update]
+    resources :notices, only: [:index, :edit, :update, :destroy, :create]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

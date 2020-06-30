@@ -14,7 +14,6 @@ set :output, 'log/cron.log'
 # ジョブの実行環境の指定
 rails_env = ENV['RAILS_ENV'] || :production
 
-
 set :environment, rails_env
 
 #
@@ -32,15 +31,11 @@ set :environment, rails_env
 
 # Learn more: http://github.com/javan/whenever
 
-
 # 3時間毎に実行するスケジューリング
 every 1.days, pm: '15:00 am' do
-  # Rails内のメソッド実行
   runner "NotificationMailer.user_count.deliver_now"
 end
 
-every :monday, at: ['12:00 pm']  do
-# Rails内のメソッド実行
-  # runner "NotificationMailer.user_answer_point_count_rank.deliver_now"
+every :monday, at: ['12:00 pm'] do
   rake "user_count:user_answer_point_reset"
 end

@@ -1,5 +1,4 @@
 class Contact < ApplicationRecord
-
   # アソシエーション
   belongs_to :user
 
@@ -15,5 +14,4 @@ class Contact < ApplicationRecord
     return Contact.all unless search
     Contact.where(['title LIKE ?', "%#{search}%"])
   end
-
 end

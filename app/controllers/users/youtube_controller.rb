@@ -40,8 +40,8 @@ class Users::YoutubeController < ApplicationController
   end
 
   private
-  def youtube_params
-    params.require(:youtube).permit(:youtube_title,:youtube_comment,:youtube_url)
-  end
 
+  def youtube_params
+    params.require(:youtube).permit(:youtube_title, :youtube_comment, :youtube_url)
+  end
 end

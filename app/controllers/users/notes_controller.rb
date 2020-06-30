@@ -1,5 +1,5 @@
 class Users::NotesController < ApplicationController
-  before_action :note_information, only:[:edit,:update,:destroy]
+  before_action :note_information, only: [:edit, :update, :destroy]
 
   def index
     @note = Note.new
@@ -31,12 +31,12 @@ class Users::NotesController < ApplicationController
   end
 
   private
+
   def notes_params
-    params.require(:note).permit(:note_title,:note_body,:post_image)
+    params.require(:note).permit(:note_title, :note_body, :post_image)
   end
 
   def note_information
     @note = Note.find(params[:id])
   end
-
 end

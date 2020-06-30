@@ -1,5 +1,5 @@
 class Admins::PostsController < ApplicationController
-  before_action :post_information, only:[:edit,:update,:destroy]
+  before_action :post_information, only: [:edit, :update, :destroy]
 
   def index
     @posts_solution = Post.where(solution: false).recent.page(params[:page]).per(20).search(params[:title])
@@ -20,12 +20,12 @@ class Admins::PostsController < ApplicationController
   end
 
   private
+
   def posts_params
-    params.require(:post).permit(:title,:post_body,:post_image)
+    params.require(:post).permit(:title, :post_body, :post_image)
   end
 
   def post_information
     @post = Post.find(params[:id])
   end
-
 end
