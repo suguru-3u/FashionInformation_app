@@ -28,9 +28,12 @@ class Users::PostsController < ApplicationController
   end
 
   def update
+    # 解決ボタンをクリックした場合
     if @post.solution = params[:solution]
       @post.update ? redirect_to(users_posts_path) : render(:show)
     end
+    # お悩み内容を変更した場合
+    @post.solution = false
     if @post.update(posts_params)
       flash[:primary] = '投稿内容を変更しました'
       redirect_to users_posts_path
