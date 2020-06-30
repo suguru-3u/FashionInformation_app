@@ -1,4 +1,7 @@
 <div class="container pt-5 mt-5">
+  <!-- flash_messageを表示 -->
+  <%= render partial: "layouts/flash_message" %>
+  
   <h2>詳細</h2>
   <%= form_for(@post,url:users_post_path(@post) , method: :PATCH) do |f| %>
 
