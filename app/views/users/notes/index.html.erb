@@ -1,0 +1,62 @@
+<div class ='container'>
+  <h2 class = 'text-center mt-3 mb-3'>メモページ</h2>
+  <h3 class = "mb-3 mt-3 ">メモ作成</h3>
+    <div class = 'row'>
+      <div class="col-3">
+        <%= form_with(model:@note,url:users_notes_path , method: :post) do |f| %>
+
+        <!-- エラーメッセージ表示-->
+        <% if @note.errors.any? %>
+        <h3><%= @note.errors.count %>件のエラーが発生</h3>
+        <ul>
+          <% @note.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+        <% end %>
+
+        <!-- ユーザー情報表示-->
+        <div class="row">
+          <div class="col">
+            <%= f.label :'タイトル' %><br>
+            <%= f.text_field :note_title,class:'form-control',id:'note_title' %>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <%= f.label :'画像' %><br/>
+          <%= f.attachment_field :post_image,id:'note_image' %>
+        </div>
+
+        <div class="mt-4 ">
+          <%= f.label :'本文' %><br/>
+          <%= f.text_area :note_body,class:'form-control',id:'note_body' %>
+        </div>
+
+        <div class="mt-4">
+          <%= f.submit "保存",class: 'btn btn-info note_submit'%>
+        </div>
+
+        <% end %>
+      </div>
+
+    <div class = 'col-9'>
+      <div class="row id='note_card'">
+        <% @notes.each do |note| %>
+         <div class="col-4 mb-5">
+           <div class="card">
+            <%= attachment_image_tag(note,:post_image, fallback: "no_image.jpg",class:"card-img-top") %>
+              <div class="card-body">
+               <%= note.note_title %>
+               <p class = 'class='card-text''>
+                 <%= link_to '詳細',edit_users_note_path(note) %>
+                 <%= link_to '削除',users_note_path(note),method: :delete %>
+               </p>
+              </div>
+           </div>
+         </div>
+         <% end %>
+      </div>
+    </div>
+  </div>
+</div>

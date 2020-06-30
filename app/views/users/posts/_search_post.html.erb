@@ -1,0 +1,18 @@
+<!-- 検索フォーム -->
+<div class='text-center mb-5'>
+  <div class="row justify-content-center ">
+    <div>
+      <%= form_with(url: users_users_posts_path, local: true, method: :get, class: "search-form") do |f| %>
+      <%= f.text_field :name, placeholder: "検索", class: "search-inputa form-control",id: 'search-input', autocomplete:'off' %>
+    </div>
+    <div>
+      <%= f.submit '検索',class: 'btn btn-info ml-3 '%>
+    </div>
+    <% end %>
+  </div>
+  <div class="result">
+    <ul>
+      <!-- この中にインクリメンタルサーチの結果が表示される -->
+    </ul>
+  </div>
+</div>

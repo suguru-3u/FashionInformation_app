@@ -1,0 +1,18 @@
+<div class="container mt-5 pt-3 text-center">
+  <h2 class = 'text-center'>お問い合わせ詳細</h2>
+  <div class = "mt-5">
+    <h4 class = "mb-3">お問い合わせタイトル</h4>
+    <p><%= @contact.title %></p>
+    <h4 class = "mb-3">ユーザー名</h4>
+    <p><%= @contact.user.name %></p>
+    <h4 class = "mb-3">ユーザーアドレス</h4>
+    <p><%= @contact.user.email %></p>
+    <h4 class = "mb-3">お問い合わせ日時</h4>
+    <p><%= @contact.created_at %></p>
+
+    <p class = "mt-5 mb-5">
+      お問い合わせ内容<br><%= @contact.contact_body %>
+    </p>
+    <%= link_to 'お問い合わせ一覧に戻る',admins_contacts_path,class: 'btn btn-outline-primary'%>
+  </div>
+</div>

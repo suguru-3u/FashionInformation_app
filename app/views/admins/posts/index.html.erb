@@ -1,0 +1,84 @@
+<div class="container mb-5 pt-5 mb-5 pb-5">
+  <h2 class ='text-center mt-5 mb-3'>お悩み一覧</h2>
+  <!-- 検索フォーム -->
+  <div class='text-center mb-5'>
+    <div class="row justify-content-center ">
+      <div>
+        <%= form_tag(admins_posts_path,:method => 'get') do %>
+        <%= text_field_tag :title %>
+      </div>
+      <div>
+        <%= submit_tag '検索',class: 'btn btn-info ml-3 '%>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="wrap">
+    <ul id="tab-menu-post" class="clearfix">
+      <li><a href="#tab1" class="active">解決していないお悩み</a></li>
+      <li><a href="#tab2" class="">解決したお悩み</a></li>
+    </ul>
+    <div id="tab-contents" class="clearfix">
+      <div id="tab1" class="tab">
+        <table class = 'table'>
+          <thead>
+            <tr>
+              <th>タイトル<br>ユーザー名</th><th>ユーザー名</th><th>投稿日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @posts_solution.each do |posts_solution| %>
+            <tr>
+              <th>
+                <%= "タイトル : #{posts_solution.title}" %><br><br>
+                <%= "ユーザー名 : #{posts_solution.user.name}" %><br><br>
+                <%= "コメント数 : #{posts_solution.comments.count}" %>
+              </th>
+              <th>
+                <%= link_to '詳細',edit_admins_post_path(posts_solution),class: 'btn btn-outline-info mb-3'%><br>
+                <%= link_to '削除',admins_post_path(posts_solution),method: :delete, data: {confirm: "削除しますか？"},class: 'btn btn-outline-danger'%>
+              </th>
+              <th><%= posts_solution.created_at.to_s(:datetime_jp)  %></th>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class='mb-5'>
+          <%= paginate @posts_solution %>
+        </div>
+      </div>
+      <div id="tab2" class="tab">
+        <table class = 'table'>
+          <thead>
+            <tr>
+              <th>タイトル<br>ユーザー名</th><th>ユーザー名</th><th>投稿日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @posts.each do |posts| %>
+            <tr>
+              <th>
+                <%= "タイトル : #{posts.title}" %><br><br>
+                <%= "ユーザー名 : #{posts.user.name}" %><br><br>
+                <%= "コメント数 : #{posts.comments.count}" %>
+              </th>
+              <th>
+                <%= link_to '詳細',edit_admins_post_path(posts),class: 'btn btn-outline-info mb-3'%><br>
+                <%= link_to '削除',admins_post_path(posts),method: :delete, data: {confirm: "削除しますか？"},class: 'btn btn-outline-danger'%>
+              </th>
+              <th><%= posts.created_at.to_s(:datetime_jp)  %></th>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class='mb-5'>
+          <%= paginate @posts %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>

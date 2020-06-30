@@ -7,5 +7,8 @@ class Users::HomesController < ApplicationController
 
   def my_page
   end
-  
+
+  def guidance
+  end
+
 end

@@ -1,0 +1,71 @@
+<%# ランキングに必要な変数 %>
+  <% rank = 0 %>
+
+<ul id="tab-menu-post" class="clearfix">
+  <li><a href="#tab1" class="active">お悩み一覧</a></li>
+  <li><a href="#tab2" class="">Good コメントランキング</a></li>
+</ul>
+
+<div id="tab-contents" class="clearfix">
+  <div id="tab1" class="tab">
+    <div class="row" id='post_card'>
+     <% posts.each do |post| %>
+      <div class="col-lg-4 mb-3">
+        <div class="card">
+         <%= attachment_image_tag(post,:post_image, fallback: "no_image.jpg", size:'300x350' ,class:"card-img-top") %>
+           <div class="card-body">
+            <%= post.title %>
+            <p class = 'class='card-text''>
+              <%= post.created_at.to_s(:datetime_jp) %><br>
+              <%= "コメント数 : #{post.comments.count}" %><br>
+              <%= link_to 'お悩みを解決する',users_post_path(post),class: 'btn btn-outline-dark'%><br>
+              <% if post.favorites_user(current_user.id, post.id) %>
+               <%= link_to 'ブックマーク解除',users_post_favorites_path(post),method: :delete,class: 'btn btn-outline-danger' %><br>
+              <% else %>
+               <%= link_to 'ブックマーク',users_post_favorites_path(post),method: :post,class: 'btn btn-outline-dark' %><br>
+              <% end %>
+              <% if post.user_id == current_user.id %>
+               <%= link_to '編集',edit_users_post_path(post),class: 'btn btn-outline-success' %>
+               <%= link_to '削除',users_post_path(post),method: :delete, data: {confirm: "削除しますか？"},class: 'btn btn-outline-danger' %>
+              <% end %>
+            </p>
+           </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class='mb-5'>
+      <%= paginate posts %>
+    </div>
+  </div>
+  <div id="tab2" class="tab">
+    <div class="row" id='post_card'>
+        <p>
+          この一覧はお悩みに対して良いコメントをした方のランキングです。
+          さあ、お悩みを解決してください!
+        </p>
+      <% users.each do |user| %>
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>順位</th><th>ユーザー名</th><th>Good コメント数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= rank += 1 %>
+            </td>
+            <td>
+              <%= user.name %>
+            </td>
+            <td>
+              <%= user.answer_point %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

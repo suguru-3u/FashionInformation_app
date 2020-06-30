@@ -12,16 +12,25 @@
     <header>
       <!-- ユーザーと管理者で分けている -->
       <% if admin_signed_in? %>
-        <%= render '/layouts/navbar_admin' %>
+        <%= render 'layouts/navbar_admin' %>
       <% else %>
-        <%= render '/layouts/navbar_user' %>
+        <%= render 'layouts/navbar_user' %>
       <% end %>
     </header>
 
     <%= yield %>
 
     <footer class="footer mt-auto py-3 navbar-dark bg-dark fixed-bottom">
-      <%= render '/layouts/footer' %>
+      <div class="container text-center">
+        <%= link_to 'https://twitter.com/', target: :_blank  do  %>
+          <i class="fa fa-twitter text-secondary mr-5">ツイッター</i>
+        <% end %>
+        <%= link_to 'https://www.instagram.com/', target: :_blank  do  %>
+          <i class="fab fa-instagram text-secondary mr-5">インスタグラム</i>
+        <% end %>
+        <span class="text-secondary" >©oohira suguru</span>
+      </div>
+
     </footer>
 
   </body>
