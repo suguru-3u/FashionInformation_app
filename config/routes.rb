@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resource :passwords, only: [:create,:update]
     get 'homes/about' => 'homes#about'
     get 'homes/my_page' => 'homes#my_page'
+    get 'homes/guidance' => 'homes#guidance'
     resource :users, only:[:show,:edit,:update]
     resources :contacts, only: [:new,:create]
     resources :youtube, only: [:index,:create,:destroy]

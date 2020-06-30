@@ -43,9 +43,6 @@ span{
  position: absolute;
  color: white;
 }
-// .introduce{
-//   background-color: #f5f5f5;
-// }
 .top-message{
   width: 850px;
   margin-left: 200px;
@@ -67,7 +64,7 @@ span{
   width: 300px;
 }
 
-// my-page.scss
+// my-page ページ
 .my-page{
   background: image-url('vadim-sherbakov-tCICLJ5ktBE-unsplash.jpg')
   center no-repeat;
@@ -90,4 +87,15 @@ span{
 
 .dropdown-item:active{
   background-color: #343a40 ;
+}
+
+// guidanceページ
+.guidance{
+  background: image-url('clem-onojeghuo-HpEDSZukJqk-unsplash.jpg')
+  center no-repeat;
+  background-size: cover;
+  color: white;
+}
+.guidance_content{
+  border: 1px solid #D3D3D3;
 }
