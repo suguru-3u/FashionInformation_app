@@ -1,5 +1,4 @@
 class Admins::AdminsController < ApplicationController
-
   def show
     @users = User.count
     @today_registrations = User.where("created_at >= ?", Time.zone.now.beginning_of_day).count
@@ -9,5 +8,4 @@ class Admins::AdminsController < ApplicationController
     @contacts = Contact.all
     @notice = Notice.all
   end
-
 end

@@ -1,13 +1,12 @@
 class Admins::NoticesController < ApplicationController
-  before_action :note_information, only:[:edit,:update,:destroy]
+  before_action :note_information, only: [:edit, :update, :destroy]
 
   def index
     @notices = Notice.recent.page(params[:page]).per(20).search(params[:announce_title])
     @notice = Notice.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @notices = Notice.all
@@ -24,12 +23,12 @@ class Admins::NoticesController < ApplicationController
   end
 
   private
+
   def notices_params
-    params.require(:notice).permit(:announce_title,:announce_body)
+    params.require(:notice).permit(:announce_title, :announce_body)
   end
 
   def note_information
     @notice = Notice.find(params[:id])
   end
-
 end

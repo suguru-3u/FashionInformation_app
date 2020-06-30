@@ -16,13 +16,9 @@ class User < ApplicationRecord
   has_many :notes, dependent: :destroy
   has_many :answers, dependent: :destroy
 
-
   # バリデーション
   validates :name, presence: true
   validates :email, presence: true
-
-  # enum設定
-  enum sex_status: {neither: 0, men: 1, women: 2}
 
   # 最近のお悩み情報の取得の方法
   scope :recent, -> { order(created_at: "DESC") }
@@ -30,19 +26,20 @@ class User < ApplicationRecord
   # post情報取得scope
   scope :recent_post, -> { order(answer_point: "DESC").limit(3) }
 
-
   # GoogleAPIメゾット
+
   protected
+
   def self.find_for_google(auth)
     user = User.find_by(email: auth.info.email)
     unless user
-      user = User.create(name:     auth.info.name,
+      user = User.create(name: auth.info.name,
                          provider: auth.provider,
-                         uid:      auth.uid,
-                         token:    auth.credentials.token,
-                         email:    auth.info.email,
+                         uid: auth.uid,
+                         token: auth.credentials.token,
+                         email: auth.info.email,
                          password: Devise.friendly_token[0, 20],
-                         meta:     auth.to_yaml)
+                         meta: auth.to_yaml)
     end
     user
   end
@@ -52,5 +49,4 @@ class User < ApplicationRecord
     return User.all unless search
     User.where(['name LIKE ?', "%#{search}%"])
   end
-
 end

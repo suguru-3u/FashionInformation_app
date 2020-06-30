@@ -1,5 +1,5 @@
 class Admins::UsersController < ApplicationController
-  before_action :user_information, only:[:edit,:update,:destroy]
+  before_action :user_information, only: [:edit, :update, :destroy]
 
   def index
     @users = User.recent.page(params[:page]).per(20).search(params[:name])
@@ -17,12 +17,12 @@ class Admins::UsersController < ApplicationController
   end
 
   private
+
   def user_params
-    params.require(:user).permit(:name,:email)
+    params.require(:user).permit(:name, :email)
   end
 
   def user_information
     @user = User.find(params[:id])
   end
-
 end
