@@ -2,7 +2,7 @@ class Users::UsersController < ApplicationController
   before_action :my_page_infomration, only: [:show, :update]
 
   def show
-    @solution_posts = Post.where(solution: false).recent.page(params[:page]).per(9)
+    @solution_posts = Post.where(solution: true).recent.page(params[:page]).per(9)
   end
 
   def update
