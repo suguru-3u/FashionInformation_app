@@ -6,9 +6,11 @@ class Users::CommentsController < ApplicationController
     @comment = post.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
+      flash[:primary] = 'コメント投稿を投稿しました'
       NotificationMailer.complete_mail(@user).deliver_now
       redirect_back(fallback_location: root_path)
     else
+      flash[:danger] = 'コメント投稿に失敗しました'
       redirect_back(fallback_location: root_path)
     end
   end
@@ -17,6 +19,7 @@ class Users::CommentsController < ApplicationController
   def destroy
     @comment = Comment.find_by(post_id: params[:post_id], user_id: current_user.id)
     @comment.destroy
+    flash[:primary] = 'コメント削除しました'
     redirect_back(fallback_location: root_path)
   end
 
