@@ -20,7 +20,6 @@ class Users::PasswordsController < Devise::PasswordsController
     params.require(:user).permit(:email)
   end
 
-
   # GET /resource/password/new
   # def new
   #   super
@@ -30,7 +29,6 @@ class Users::PasswordsController < Devise::PasswordsController
   # def create
   #   super
   # end
-
 
   # GET /resource/password/edit?reset_password_token=abcdef
   # def edit

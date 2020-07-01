@@ -1,7 +1,17 @@
 <div class="p-5 my-page">
   <div class="container">
+    <%= render partial: "layouts/flash_message" %>
     <div class="row pt-5">
-      <div class="col-lg-6 mb-5">
+      <div class="col-lg-4 mb-5">
+        <div class = "my-page-box p-5">
+          <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">ご案内</h3>
+          <div class="my-page-content">
+            <p>このアプリの機能の説明をしてあります。ぜひご覧ください！</p>
+            <%= link_to 'こちらをクリック',users_homes_guidance_path,class: 'my-page-link btn btn-outline-secondary' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-5">
         <div class = " my-page-box p-5">
           <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">お悩み質問をする</h3>
           <div class="my-page-content">
@@ -10,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6 mb-5">
+      <div class="col-lg-4 mb-5">
         <div class = "my-page-box p-5">
           <h3 class = "text-center mb-3 pb-2 border-bottom my-page-top">Youtube動画検索</h3>
           <div class="my-page-content">

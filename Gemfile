@@ -52,7 +52,6 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
@@ -96,23 +95,18 @@ gem 'mail-iso-2022-jp'
 # 定期実行
 gem 'whenever', require: false
 
-# デバック
-gem 'byebug'
-
 # ページネーション機能
 gem 'kaminari'
 
-# フォント
-gem 'font-awesome-rails'
-
-gem 'listen', '>= 3.0.5', '< 3.2'
+# rubocop
+gem 'rubocop-airbnb'
 
 # テスト
 group :development, :test do
   gem 'capybara', '>= 2.15'
-   gem 'rspec-rails'
-   gem "factory_bot_rails"
-   gem 'faker'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
 end
 
 # 本番環境
@@ -124,5 +118,4 @@ end
 # 開発環境のdb
 group :development do
   gem 'letter_opener'
-
 end

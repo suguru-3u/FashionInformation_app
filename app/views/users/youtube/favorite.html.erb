@@ -13,7 +13,7 @@
       <tr>
         <td><%= youtube.youtube_comment %></td><br>
         <td>
-          <%= link_to '動画を見る',youtube.youtube_url_was,class: 'btn btn-outline-success mb-3' %><br>
+          <%= link_to '動画を見る',youtube.youtube_url_was, :target=>["_blank"],class: 'btn btn-outline-success mb-3' %><br>
           <%= link_to '削除する',users_youtube_path(youtube),method: :delete, data: {confirm: "削除しますか？"},class: 'btn btn-outline-danger' %>
         </td>
       </tr>

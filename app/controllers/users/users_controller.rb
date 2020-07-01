@@ -1,8 +1,8 @@
 class Users::UsersController < ApplicationController
-  before_action :my_page_infomration, only:[:show,:update]
+  before_action :my_page_infomration, only: [:show, :update]
 
   def show
-    @solution_posts = Post.where(solution: false).recent.page(params[:page]).per(9)
+    @solution_posts = Post.where(solution: true).recent.page(params[:page]).per(9)
   end
 
   def update
@@ -17,8 +17,9 @@ class Users::UsersController < ApplicationController
   end
 
   private
+
   def user_params
-		params.require(:user).permit(:name,:email)
+	   params.require(:user).permit(:name, :email)
   end
 
   def my_page_infomration
@@ -27,5 +28,4 @@ class Users::UsersController < ApplicationController
     @current_user_favorites = current_user.favorites_post.recent.page(params[:page]).per(9)
     @current_user_comments = current_user.comments_post.recent.page(params[:page]).per(9)
   end
-
 end

@@ -123,7 +123,7 @@ describe 'ユーザーのテスト' do
         expect(page).to have_content('投稿したお悩み')
       end
       it 'お悩み一覧の画像が表示される' do
-        expect(all('img').size).to eq(3)
+        expect(all('img').size).to eq(1)
       end
       it 'お悩み一覧が表示される' do
         expect(page).to have_content post.title
