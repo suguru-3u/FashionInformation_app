@@ -5,7 +5,7 @@
       <%= attachment_image_tag(post,:post_image, fallback: "no_image.jpg", size:'300x350',class:"card-img-top") %>
         <div class="card-body">
           <%= post.title %>
-          <p class = 'class='card-text''>
+          <p class='card-text'>
           <%= post.created_at.to_s(:datetime_jp) %><br>
           <%= "コメント数 : #{post.comments.count}" %><br>
           <%= link_to 'お悩みを解決する',users_post_path(post),class: 'btn btn-outline-dark'%><br>

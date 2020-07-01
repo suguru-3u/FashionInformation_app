@@ -14,7 +14,7 @@ class NotificationMailer < ApplicationMailer
   end
 
   def user_contact
-    @url = "https://fashioninformation.net"
+    @url = "https://fashioninformation.net/admins/sign_in"
     mail(subject: "お問い合わせがありました", to: ENV['Gmail_name'])
   end
 
