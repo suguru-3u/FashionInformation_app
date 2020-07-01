@@ -47,10 +47,10 @@
           <%= paginate @comments %>
         </div>
         <h5>コメント投稿</h5>
-            <% @post.solution = true %>
-            <%= form_for(@post, url: users_post_path(@post), method: :PATCH) do |f| %>
-              <%= f.hidden_field :solution, :value => @post.solution %>
-            <%= f.submit "お悩み解決",class: 'btn btn-success mt-3' %>
-            <% end %>
+        <% @post.solution = true %>
+        <%= form_for(@post, url: users_post_path(@post), method: :PATCH) do |f| %>
+          <%= f.hidden_field :solution, :value => @post.solution %>
+        <%= f.submit "お悩み解決",class: 'btn btn-success mt-3' %>
+        <% end %>
   </div>
 </div>
