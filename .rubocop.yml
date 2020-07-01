@@ -3,6 +3,7 @@ inherit_from:
 
 AllCops:
     Exclude:
+        - 'app/views/users/notes/create.json.jbuilder'
         - 'db/**/*'
         - 'bin/*'
         - 'config/environments/*'
@@ -12,6 +13,7 @@ AllCops:
         - 'lib/tasks/*'
         - 'spec/*/*'
         - 'spec/spec_helper.rb'
+        - 'spec/rails_helper.rb'
         - 'vendor/**/*'
         - 'path/ruby'
         - 'test/*/*/*'
