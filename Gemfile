@@ -101,6 +101,9 @@ gem 'kaminari'
 # rubocop
 gem 'rubocop-airbnb'
 
+# N + 1 問題
+gem "bullet"
+
 # テスト
 group :development, :test do
   gem 'capybara', '>= 2.15'
