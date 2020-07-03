@@ -101,8 +101,6 @@ gem 'kaminari'
 # rubocop
 gem 'rubocop-airbnb'
 
-# N + 1 問題
-gem "bullet"
 
 # テスト
 group :development, :test do
@@ -110,6 +108,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem "factory_bot_rails"
   gem 'faker'
+  # N + 1 問題
+  gem "bullet"
 end
 
 # 本番環境
