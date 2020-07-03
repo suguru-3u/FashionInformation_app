@@ -101,12 +101,15 @@ gem 'kaminari'
 # rubocop
 gem 'rubocop-airbnb'
 
+
 # テスト
 group :development, :test do
   gem 'capybara', '>= 2.15'
   gem 'rspec-rails'
   gem "factory_bot_rails"
   gem 'faker'
+  # N + 1 問題
+  gem "bullet"
 end
 
 # 本番環境
