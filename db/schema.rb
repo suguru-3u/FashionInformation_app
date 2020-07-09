@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_06_26_051354) do
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -25,26 +25,26 @@ ActiveRecord::Schema.define(version: 2020_06_26_051354) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "answers", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "comment_id"
+  create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_answers_on_comment_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
-    t.integer "user_id"
-    t.integer "post_id"
+    t.bigint "user_id"
+    t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "contacts", force: :cascade do |t|
+  create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "contact_body"
     t.integer "user_id"
@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 2020_06_26_051354) do
     t.boolean "solution", default: false
   end
 
-  create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
@@ -63,13 +63,13 @@ ActiveRecord::Schema.define(version: 2020_06_26_051354) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "genres", force: :cascade do |t|
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "genrne_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "notes", force: :cascade do |t|
+  create_table "notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "note_title"
     t.text "note_body"
     t.string "post_image_id"
@@ -78,14 +78,14 @@ ActiveRecord::Schema.define(version: 2020_06_26_051354) do
     t.integer "user_id"
   end
 
-  create_table "notices", force: :cascade do |t|
+  create_table "notices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "announce_title"
     t.text "announce_body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "post_body"
     t.string "post_image_id"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2020_06_26_051354) do
     t.boolean "solution", default: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_06_26_051354) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "youtubes", force: :cascade do |t|
+  create_table "youtubes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "youtube_title"
     t.text "youtube_comment"
     t.text "youtube_url"
@@ -132,4 +132,10 @@ ActiveRecord::Schema.define(version: 2020_06_26_051354) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "answers", "comments"
+  add_foreign_key "answers", "users"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
 end
