@@ -111,10 +111,6 @@ group :development, :test do
   gem 'faker'
   # N + 1 問題
   gem "bullet"
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano3-puma'
-  gem 'capistrano-rbenv'
 end
 
 # 本番環境
