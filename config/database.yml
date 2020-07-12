@@ -5,21 +5,17 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8
+  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') { '13579515Ss' } %>
-  host: db
+  timeout: 5000
 
 development:
   <<: *default
-  database: FashionInformation_app_development
-
+  database: db/development.sqlite3
+  
 test:
   <<: *default
-  database: FashionInformation_app_test
-
+  database: db/test.sqlite3
 
 production:
   <<: *default
