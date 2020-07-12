@@ -5,8 +5,7 @@ ruby '2.5.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -101,6 +100,8 @@ gem 'kaminari'
 # rubocop
 gem 'rubocop-airbnb'
 
+# db
+gem 'mysql2'
 
 # テスト
 group :development, :test do
@@ -110,11 +111,14 @@ group :development, :test do
   gem 'faker'
   # N + 1 問題
   gem "bullet"
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rbenv'
 end
 
 # 本番環境
 group :production do
-  gem 'mysql2'
   gem 'aws-ses'
 end
 
@@ -122,4 +126,3 @@ end
 group :development do
   gem 'letter_opener'
 end
-
