@@ -26,7 +26,7 @@ services:
       - public-data:/FashionInformation_app/public
       - tmp-data:/FashionInformation_app/tmp
     ports:
-      - fashioninformationsolution.net:80
+      - 80:80
     networks:
       default:
         aliases:
