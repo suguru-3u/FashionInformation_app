@@ -80,7 +80,7 @@ gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
 gem 'rails-i18n'
 
 # bootsnap
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 
 # Jqouery
 gem 'jquery-rails'
