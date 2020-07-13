@@ -15,8 +15,8 @@ services:
     command: bundle exec puma -C config/puma.rb -e production
     volumes:
       - .:/FashionInformation_app:cached
-      - public-data:/FashionInformation_app/public:cached
-      - tmp-data:/FashionInformation_app/tmp:cached
+      # - public-data:/FashionInformation_app/public:cached
+      # - tmp-data:/FashionInformation_app/tmp:cached
       - log-data:/FashionInformation_app/log:cached
 
   web:
@@ -24,7 +24,7 @@ services:
       context: containers/nginx
     volumes:
       - public-data:/FashionInformation_app/public:cached
-      - tmp-data:/FashionInformation_app/tmp:cached
+      # - tmp-data:/FashionInformation_app/tmp:cached
     ports:
       - 80:80
     networks:
