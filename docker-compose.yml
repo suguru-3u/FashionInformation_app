@@ -26,11 +26,26 @@ services:
       - public-data:/FashionInformation_app/public:cached
       - tmp-data:/FashionInformation_app/tmp:cached
     ports:
-      - 80:80
+      - 8000:8000
     networks:
       default:
         aliases:
           - fashioninformationsolution.net
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    # volumes:
+    #   - ./Certs/:/var/lib/https-portal/
+    environment:
+      DOMAINS: 'fashioninformationsolution.net -> http://web:8080'
+      STAGE: "production"
+      # FORCE_RENEW: 'true'
+    # links:
+    #   - web
 
 volumes:
   # mysql-data:
