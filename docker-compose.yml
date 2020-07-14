@@ -38,14 +38,14 @@ services:
       - 80:80
       - 443:443
     restart: always
-    # volumes:
-    #   - ./Certs/:/var/lib/https-portal/
+    volumes:
+      - ./Certs/:/var/lib/https-portal/
     environment:
       DOMAINS: 'fashioninformationsolution.net -> http://web:8000'
       STAGE: "production"
       # FORCE_RENEW: 'true'
-    # links:
-    #   - web
+    links:
+      - web
 
 volumes:
   # mysql-data:
