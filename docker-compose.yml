@@ -27,10 +27,6 @@ services:
       - tmp-data:/FashionInformation_app/tmp:cached
     ports:
       - 8000:8000
-    networks:
-      default:
-        aliases:
-          - fashioninformationsolution.net
 
   https-portal:
     image: steveltn/https-portal:1
