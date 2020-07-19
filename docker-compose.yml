@@ -39,9 +39,9 @@ services:
     environment:
       DOMAINS: 'fashioninformationsolution.net -> http://web:8000'
       STAGE: "production"
-      # FORCE_RENEW: 'true'
-    links:
-      - web
+      FORCE_RENEW: 'false'
+    # links:
+    #   - web
 
 volumes:
   # mysql-data:
