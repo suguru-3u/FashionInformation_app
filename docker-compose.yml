@@ -37,9 +37,9 @@ services:
     volumes:
       - ./Certs/:/var/lib/https-portal/
     environment:
-      DOMAINS: 'fashioninformationsolution.net -> http://web:8000'
+      DOMAINS: 'fashioninformationsolution.net -> http://web'
       STAGE: "production"
-      # FORCE_RENEW: 'true'
+      FORCE_RENEW: 'false'
     links:
       - web
 
