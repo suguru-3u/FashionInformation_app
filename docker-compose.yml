@@ -37,11 +37,16 @@ services:
     volumes:
       - ./Certs/:/var/lib/https-portal/
     environment:
-      DOMAINS: 'fashioninformationsolution.net -> http://web:8000'
+      DOMAINS: 'fashioninformationsolution.net -> http://web'
       STAGE: "production"
       FORCE_RENEW: 'false'
+<<<<<<< HEAD
     # links:
     #   - web
+=======
+    links:
+      - web
+>>>>>>> 2d185758e30c0ec785e394b4b987f4d41a5c0a19
 
 volumes:
   # mysql-data:
