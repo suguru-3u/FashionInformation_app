@@ -40,8 +40,9 @@ services:
       DOMAINS: 'fashioninformationsolution.net -> http://web'
       STAGE: "production"
       FORCE_RENEW: 'false'
-    links:
-      - web
+    # links:
+    #   - web
+
 
 volumes:
   # mysql-data:
