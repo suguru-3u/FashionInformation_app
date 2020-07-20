@@ -20,7 +20,7 @@ jobs:
         environment:
           MYSQL_USER: "${DB_NAME}"
           MYSQL_DB: "${Test_DB_NAME}"
-          MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+          DB_PASSWORD: ''
 
 
     working_directory: ~/your_app_name
