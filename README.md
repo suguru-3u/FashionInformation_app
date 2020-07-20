@@ -18,6 +18,5 @@ FashionInformation
 主な利用シーン
 洋服のコーディネートに悩んだ際、洋服を購入する際、洋服に興味を持った際
 
-設計書
 機能一覧
 https://docs.google.com/spreadsheets/d/1CBte7e-9FSHNkXj8QgOuovMVPehTLoWh1Hxh5-aP3po/edit?usp=sharing
