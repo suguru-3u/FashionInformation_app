@@ -4,6 +4,7 @@ orbs:
 
 jobs:
   build:
+    context: FashionInfomartion
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.5.7-stretch-node
@@ -16,6 +17,11 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:5.7
+        environment:
+          MYSQL_USER: "${DB_NAME}"
+          MYSQL_DB: "${Test_DB_NAME}"
+          password: "${DB_PASSWORD}"
+
 
     working_directory: ~/your_app_name
 
