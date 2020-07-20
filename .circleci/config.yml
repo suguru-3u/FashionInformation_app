@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@0.1.2 
+  ruby: circleci/ruby@0.1.2
 
 jobs:
   build:
@@ -45,6 +45,7 @@ jobs:
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
       # Database setup
+      - run: cp -v config/database.ci.yml config/database.yml
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
@@ -72,4 +73,3 @@ jobs:
       # - run:
       #     name: run rubocop
       #     command: bundle exec rubocop
-      
