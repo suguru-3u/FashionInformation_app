@@ -8,6 +8,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/ruby:2.6.3-stretch-node
         environment:
+          BUNDLER_VERSION: 2.1.4  
           RAILS_ENV: test
           DB_HOST: 127.0.0.1
 
@@ -32,6 +33,7 @@ jobs:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
+            gem install bundler -v 2.1.4
 
       - save_cache:
           paths:
