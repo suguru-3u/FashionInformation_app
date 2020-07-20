@@ -18,9 +18,9 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_USER: "${DB_NAME}"
-          MYSQL_DB: "${Test_DB_NAME}"
-          password: "${DB_PASSWORD}"
+          MYSQL_USER: ${DB_NAME}
+          MYSQL_DB: ${Test_DB_NAME}
+          MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
 
 
     working_directory: ~/your_app_name
